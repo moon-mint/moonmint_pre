@@ -1,2 +1,2 @@
-# preregistry_app
-The integration that will help bring more adoption of IC from Web2
+# alephkazam
+The pre production version of the Alephkazam App on Aleph Zero
