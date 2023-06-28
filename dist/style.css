@@ -1,0 +1,743 @@
+@import url("https://fonts.googleapis.com/css2?family=Ultra&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jaldi:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quantico:wght@400;700&display=swap");
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Work Sans";
+  font-size: 1em;
+}
+.mainText {
+  font-size: 1.5em;
+}
+/* home page */
+.homePage .colored-col {
+  background: rgba(255, 217, 0, 0.15);
+  padding: 5em 2em;
+  text-align: center;
+}
+.homePage .homeDetailImg {
+  margin-top: 3em;
+}
+.homePage .colored-col .mainText {
+  margin-top: 2em;
+  font-weight: 400;
+}
+/* home footer */
+.homeFooter {
+  background: #000000;
+  padding: 1em 0;
+}
+.homeFooter .footerLink {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.homeFooter .footerNav {
+  color: white;
+  text-decoration: none !important;
+  display: inline-block;
+  margin-right: 1.7em;
+  transition: all ease-in-out 200ms;
+  font-family: "Quantico";
+}
+.homeFooter .footerNav:hover {
+  color: #df0053;
+}
+/* Project Section */
+.projectSection {
+  background-color: #df0053;
+}
+.pageHeader {
+  padding: 2.5em;
+}
+.pageHeader .brand {
+  display: inline-block;
+  text-decoration: none;
+}
+.mainHeading {
+  font-size: 3.2em;
+  color: white;
+  font-family: "Ultra";
+}
+.twit  {
+  max-width: 45%;
+}
+.projectSection .mainHeading {
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+.projectSection .projectContents {
+  padding: 5em 0 10em 0;
+}
+.projectSection .mainHeading span {
+  border-bottom: 7px solid #ffd900;
+  display: inline-block;
+}
+.projectContents .formBody {
+  background-color: #ffd8e6;
+  padding: 4em 7em;
+}
+.projectContents .formBody .commonLabel {
+  font-weight: 500;
+  color: black;
+  display: block;
+  margin-bottom: 0.6em;
+}
+.projectContents .formBody .commonInput {
+  width: 100%;
+  font-size: 0.9em;
+  border: 1px solid transparent;
+  outline: none;
+  padding: 0.7em 0.9em;
+  background-color: #ffe8f0;
+  color: black;
+  font-weight: 500;
+  transition: 200ms all ease-in-out;
+  margin-bottom: 2em;
+}
+.projectContents .formBody .commonInput::placeholder {
+  color: #0000004d;
+  font-weight: 500;
+}
+.projectContents .formBody .commonInput:focus-within {
+  border-color: #df0053;
+}
+.imgLableContainer {
+  padding: 0.7em 0.9em;
+  background-color: #ffe8f0;
+  margin-bottom: 2em;
+}
+.imgLableContainer input {
+  display: none;
+}
+.imgLableContainer label {
+  background-color: #ffd900;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  padding: 0.2em 0.3em;
+  letter-spacing: 2px;
+}
+.imgLableContainer .grayText {
+  color: #0000004d;
+  font-weight: 500;
+  margin-left: 0.9em;
+  display: inline-block;
+}
+.projectContents .formBtn {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  color: black;
+  letter-spacing: 2px;
+  background-color: #ffd900;
+  padding: 0.7em 3em;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-top: 1em;
+  transition: 200ms all ease-in-out;
+  border: 1px solid transparent;
+}
+.projectContents .formBtn:hover {
+  transform: translateY(-4px);
+  border-color: #df0053;
+  color: #df0053;
+  background-color: #ffe8f0;
+}
+.projectContents .dateInput {
+  position: relative;
+}
+.projectContents .dateInput .dateIcon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+.projectContents .formBody .projectText {
+  font-size: 1.1em;
+  color: black;
+  margin-bottom: 1em;
+}
+.projectContents .formBody .projectText span {
+  color: #df0053;
+  font-weight: 700;
+}
+.centeredBtn {
+  text-align: center;
+  margin-top: 2em;
+}
+.projectContents .centeredBtn .formBtn {
+  padding: 0.6em 1em;
+}
+.projectSection.allowList {
+  border-bottom: none;
+  min-height: 100vh;
+}
+.projectSection.allowList .projectContents {
+  text-align: center;
+}
+.projectSection.allowList .projectContents .mainText {
+  font-size: 1.5em;
+  color: white;
+}
+.projectSection.allowList .projectContents .mainText span {
+  font-weight: 700;
+}
+.projectSection.allowList .mainHeading {
+  margin-bottom: 0.6em;
+}
+.projectSection.allowList .multiBtns {
+  margin-top: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.projectSection.allowList .multiBtns .formBtn {
+  max-width: 100%;
+  width: 160px;
+  text-align: center;
+  padding: 0.7em;
+}
+.heroText2 {
+  font-size: 1.3em;
+  font-weight: 400;
+}
+.heroText3 {
+  font-size: 1.6em;
+  font-weight: 400;
+}
+.heroText4 {
+  font-size: 1.7em;
+  font-weight: 500;
+}
+.heroText6 {
+  color: #6b5c04;
+  font-size: 1.6em;
+  font-weight: 400;
+}
+.heroText8 {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+/* Details Section */
+.detailsSection {
+  padding: 5em 0;
+}
+.detailsSection .mainHeading {
+  color: #000000;
+  font-size: 3.8em;
+}
+.detailsSection .orderList li {
+  font-size: 1.5em;
+  color: #000000;
+}
+.detailsSection .row.oddRow {
+  align-items: center;
+}
+.detailsSection .row.oddRow.secondRow {
+  margin-top: 4em;
+}
+/* ICP Verse */
+.icpPage .icpHeader img {
+  width: 100%;
+}
+.icpPage .icpProfile {
+  margin-top: -5em;
+}
+.icpPage .mainHeading {
+  font-family: "Lato";
+  color: black;
+  font-weight: 700;
+  font-size: 3.4em;
+}
+.icpPage .registration .silentText {
+  font-family: "Lato";
+  font-weight: 400;
+  font-size: 0.9em;
+  color: rgba(0, 0, 0, 0.55);
+}
+.icpPage .registration .date {
+  font-size: 0.9em;
+  font-weight: 600;
+  font-family: "Lato";
+  color: black;
+}
+.icpPage .registration a {
+  color: #df0053;
+  text-decoration: none !important;
+  font-size: 0.9em;
+  font-weight: 400;
+}
+.icpPage .registration a img {
+  margin-right: 0.5em;
+}
+.icpPage .mainText {
+  font-family: "Lato";
+  font-size: 1em;
+  font-weight: 300;
+  color: black;
+  letter-spacing: 0.02em;
+}
+.icpPage .bold {
+  font-family: "Lato";
+  font-weight: 700;
+  font-size: 1em;
+  letter-spacing: 0.02em;
+  color: black;
+}
+.icpPage .drop,
+.icpPage .nft,
+.icpPage .boldText,
+.icpPage .heroText {
+  margin-top: 7em;
+}
+.icpPage .icpCard {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 19px;
+}
+.icpCard .cardBody,
+.icpCard .cardHeader {
+  padding: 1.5em;
+}
+.icpCard .cardBody .tokenInfo div {
+  margin-top: 0.5em;
+}
+.icpCard .cardBody .tokenInfo div img {
+  width: 1.2em;
+  margin-right: 1em;
+}
+
+.icpCard .cardBody .connectContainer div {
+  margin-top: 0.5em;
+}
+.icpCard .cardBody .connectContainer div input,
+.icpCard .cardBody .connectContainer div span {
+  margin-right: 0.5em;
+}
+.icpCard .cardBody .connectContainer {
+  margin-top: 2em;
+  padding-left: 1em;
+}
+.icpCard .cardBody {
+  margin-bottom: 3em;
+  padding-bottom: 2em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.icpCard .subHeading {
+  font-size: 1.5em;
+  font-weight: 400;
+  color: black;
+}
+.icpCard .subHeading2 {
+  font-size: 2.5em;
+  font-weight: 400;
+  text-align: center;
+  color: indigo;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.icpCard .silentText {
+  font-family: "Lato";
+  font-weight: 400;
+  font-size: 1em;
+  color: rgba(0, 0, 0, 0.55);
+}
+.icpCard .silentText.light {
+  color: rgba(0, 0, 0, 0.33);
+}
+.icpCard .silentText.radio {
+  font-weight: 700;
+}
+.icpCard .requirement {
+  padding: 0.5em 1em;
+  background: #eacbcb;
+  font-family: "Lato";
+  font-weight: 400;
+  font-size: 1em;
+}
+.icpCard .requirement span {
+  font-weight: 700;
+  color: #df0053;
+}
+.icpCard .cardFooter {
+  padding: 0.5em 1em;
+  background: #eacbcb;
+  text-align: center;
+  font-family: "Work Sans";
+  font-weight: 500;
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: 0.185em;
+  color: rgba(126, 62, 62, 0.49);
+  border-bottom-left-radius: 19px;
+  border-bottom-right-radius: 19px;
+}
+.icpCard .cardFooter img {
+  margin-right: 1em;
+  margin-top: -0.2em;
+}
+.icpCard .connect {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.icpCard .connect a {
+  font-family: "Work Sans";
+  font-weight: 500;
+  font-size: 0.8em;
+  color: black;
+  letter-spacing: 0.185em;
+  background: #ffd900;
+  border-radius: 22px;
+  padding: 0.5em 1em;
+  text-decoration: none !important;
+}
+.icpCard .register {
+  text-align: center;
+  padding: 0 1em;
+  margin-top: 5em;
+}
+.icpCard .register a {
+  font-family: "Work Sans";
+  font-weight: 500;
+  color: black;
+  letter-spacing: 0.185em;
+  background: #ffd900;
+  text-decoration: none;
+  padding: 1em 1.5em;
+  display: block;
+}
+.icpPage .question {
+  text-align: center;
+  margin-top: 10em;
+}
+.icpPage .question .mainHeading {
+  font-size: 3.4em;
+  color: black;
+  font-family: "Lato";
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.5em;
+}
+.icpPage .question p {
+  font-family: "Lato";
+  font-weight: 300;
+  font-size: 1em;
+  line-height: 172.8%;
+  letter-spacing: 0.02em;
+}
+.icpPage .question span {
+  color: #ff5aee;
+  font-family: "Lato";
+  font-weight: 700;
+  font-size: 1em;
+}
+.icpPage a {
+  transition: all ease-in-out 200ms;
+}
+.icpPage a:hover {
+  transform: translateY(-10%);
+}
+.icpPageFooter {
+  background: #df0053;
+  padding: 1em 0;
+  margin-top: 20em;
+}
+.icpPageFooter span {
+  color: white;
+  font-family: "Jaldi", sans-serif;
+  margin-right: 1em;
+}
+.responseText{
+  
+  color: crimson;
+  font-family: sans-serif;
+  font-size: large;
+}
+.loginContents {
+  padding: 5em 0 0 0;
+  position: absolute;
+  left: 25%;
+  top: 35%;
+  width: 100%;
+}
+.loginContents .loginHeading {
+  font-size: 2.5em;
+  font-weight: 600;
+  color: black;
+  line-height: 1.1;
+  margin-bottom: 0.8em;
+}
+.loginContents .loginSubHeading {
+  font-size: 1.7em;
+  font-weight: 600;
+  color: black;
+  margin-bottom: 0.7em;
+}
+.loginContents .loginButton {
+  display: block;
+  background-color: magenta;
+  color: var(--loginFontColor);
+  width: 100%;
+  text-align: center;
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 1.2em;
+  padding: 0.8em;
+  border-radius: 0.3em;
+  margin-top: 2em;
+  transition: 200ms all ease-in-out;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  border: 1px solid transparent;
+}
+.loginContents .loginButton:hover {
+  color: var(--loginThemeColor);
+  background-color: transparent;
+  border-color: var(--loginThemeColor);
+}
+.back {
+  background-color: rgb(185, 18, 185);
+  color: cornsilk;
+  position: absolute;
+  cursor: pointer;
+  padding: 0.6em;
+  border-radius: 0.3em;
+  margin-top: 2em;
+  font-weight: 600;
+  font-size: 1.2em;
+  left: 90%;
+  top: 25%;
+}
+.back2 {
+  background-color: rgb(185, 18, 185);
+  color: cornsilk;
+  position: absolute;
+  cursor: pointer;
+  padding: 0.6em;
+  border-radius: 0.3em;
+  margin-top: 2em;
+  font-weight: 600;
+  font-size: 1.2em;
+  left: 78%;
+  top: 25%;
+}
+.back3 {
+  background-color: rgb(185, 18, 185);
+  color: cornsilk;
+  position: absolute;
+  cursor: pointer;
+  padding: 0.6em;
+  border-radius: 0.3em;
+  margin-top: 2em;
+  font-weight: 600;
+  font-size: 1.2em;
+  left: 70.9%;
+  top: 25%;
+}
+.back4 {
+  background-color: rgb(185, 18, 185);
+  color: cornsilk;
+  position: absolute;
+  cursor: pointer;
+  padding: 0.6em;
+  border-radius: 0.3em;
+  margin-top: 2em;
+  font-weight: 600;
+  font-size: 1.2em;
+  left: 83.5%;
+  top: 25%;
+}
+.back5 {
+  background-color: rgb(185, 18, 185);
+  color: cornsilk;
+  position: absolute;
+  cursor: pointer;
+  padding: 0.6em;
+  border-radius: 0.3em;
+  margin-top: 2em;
+  font-weight: 600;
+  font-size: 1.2em;
+  left: 82.9%;
+  top: 25%;
+}
+.back6 {
+  background-color: rgb(185, 18, 185);
+  color: cornsilk;
+  display: inline-block;
+  cursor: pointer;
+  padding: 0.6em;
+  border-radius: 0.3em;
+  margin-top: 2em;
+  font-weight: 600;
+  font-size: 1.2em;
+  width:8%;
+  top: 25%;
+}
+.back7 {
+  background-color: rgb(185, 18, 185);
+  color: cornsilk;
+  display: inline-block;
+  cursor: pointer;
+  padding: 0.6em;
+  border-radius: 0.3em;
+  margin-top: 2em;
+  font-weight: 600;
+  font-size: 1.2em;
+  width: 20%;
+  top: 25%;
+}
+.loginButton2 {
+  display: inline;
+  background-color: magenta;
+  color: cornsilk;
+  width: 50%;
+  max-width: 50%;
+  text-align: center;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  font-size: 1.2em;
+  padding: 0.8em;
+  border-radius: 0.3em;
+  margin-top: 2em;
+  transition: 200ms all ease-in-out;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  border: 1px solid transparent;
+}
+.loginButton2:hover {
+  color: var(--loginThemeColor);
+  background-color: cyan;
+  border-color: var(--loginThemeColor);
+  cursor: pointer;
+}
+
+.loginButton3 {
+  display: inline;
+  background-color: rgb(236, 17, 236);
+  color: cornsilk;
+  width: 50%;
+  max-width: 50%;
+  
+  text-align: center;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  font-size: 1.2em;
+  padding: 0.8em;
+  border-radius: 0.3em;
+  margin-top: 2em;
+  transition: 200ms all ease-in-out;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  border: 1px solid transparent;
+}
+.loginButton3:hover {
+  color: var(--loginThemeColor);
+  background-color: cyan;
+  border-color: var(--loginThemeColor);
+  cursor: pointer;
+}
+.loginButton4 {
+  display:block;
+  background-color: rgb(207, 5, 207);
+  color: cornsilk;
+  width: 10%;
+  max-width: 10%;
+  height: 35%;
+  text-align: center;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 300;
+  font-size: 1.0em;
+  padding: 0.3em;
+  border-radius: 0.3em;
+  margin-top: 0em;
+  transition: 200ms all ease-in-out;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  border: 1px solid transparent;
+}
+.loginButton4:hover {
+  color: var(--loginThemeColor);
+  background-color: cyan;
+  border-color: var(--loginThemeColor);
+  cursor: pointer;
+}
+/* Media Query */
+@media (max-width: 992px) {
+  .mainText {
+    font-size: 2.2em;
+  }
+  .mainHeading,
+  .detailsSection .mainHeading {
+    font-size: 2em;
+  }
+  .projectSection.allowList .projectContents .mainText {
+    font-size: 1.2em;
+  }
+  .pageHeader {
+    padding: 2em 1em;
+  }
+  .detailsSection .row.oddRow.secondRow {
+    flex-wrap: wrap-reverse;
+    margin: 5em 0;
+  }
+  .projectSection.allowList {
+    min-height: 60vh;
+  }
+  .detailsSection {
+    padding: 5em 0;
+  }
+  .projectContents .formBody {
+    padding: 3em 1em;
+  }
+  .projectSection .projectContents {
+    padding: 3em 0 5em 0;
+  }
+  /* home page */
+  .homePage .colored-col {
+    margin-top: 2em;
+  }
+  .homePage .homeDetailImg {
+    margin-top: 1em;
+  }
+  .homePage .colored-col .mainText {
+    margin-top: 1em;
+  }
+  /* icpPage */
+  .icpPage .mainHeading,
+  .icpPage .question .mainHeading {
+    font-size: 2em;
+  }
+  .icpPage .mainText {
+    font-size: 0.8em;
+  }
+  .icpPage .icpProfile {
+    margin-top: -2em;
+  }
+  .icpPage .drop,
+  .icpPage .nft,
+  .icpPage .boldText,
+  .icpPage .heroText {
+    margin-top: 3em;
+  }
+  .icpPage .question {
+    margin-top: 5em;
+  }
+  .icpPage .icpCard {
+    margin-top: 3em;
+  }
+  
+}
