@@ -16,7 +16,7 @@ body {
 
 .loginButton3 {
   display: inline;
-  background-color: rgb(236, 17, 17);
+  background-color: #9a45eb;
   color: cornsilk;
   width: 50%;
   max-width: 50%;
@@ -58,6 +58,7 @@ body {
   width: 300px;
   height: 100%;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgb(243, 227, 227);
   position: fixed;
   left: 0;
   top: 0;
@@ -67,6 +68,7 @@ body {
 }
 .sideMenu .menuWrapper {
   padding: 0 1.5em;
+  background-color: rgb(243, 227, 227);
 }
 .sideMenu .supportText {
   font-size: 0.9em;
@@ -121,7 +123,7 @@ body {
 }
 .sideMenu .brandHead {
   background-color: #00032b;
-  padding: 1.4em 0;
+  padding: 2.0em 0;
   text-align: center;
 }
 .sideMenu .menuTabs .menuTab {
@@ -144,7 +146,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 3em 0 1.5em 0;
+  margin: 1em 0 1.5em 0;
 }
 .sideMenu .sideMenuLinks {
   padding: 0 2em;
@@ -157,7 +159,8 @@ body {
   border-radius: 3px;
   display: flex;
   align-items: flex-end;
-  padding: 0.7em;
+  width: 100%;
+  padding: 0.9em;
   margin-bottom: 1.2em;
 }
 .sideMenu .logoTag .roundImg {
@@ -247,7 +250,7 @@ body {
   transform: translateY(-3px);
 }
 .bodyWrapper .mainBtn.red {
-  background-color: #df0053;
+  background-color: #9a45eb;
   margin-left: 0.4em;
 }
 .bodyContents .multiButtons {
@@ -386,8 +389,8 @@ body {
   left: -8px;
 }
 .back {
-  background-color: rgb(238, 41, 41);
-  color: cornsilk;
+  background-color: #ba6eec;
+  color: rgb(235, 232, 218);
   position: absolute;
   cursor: pointer;
   padding: 0.6em;
@@ -811,6 +814,7 @@ body {
     overflow-x: scroll;
   }
   .sideMenu .menuWrapper {
+    background-color: rgb(182, 53, 53);
     padding: 0 1em;
   }
   .sideMenu .sideMenuLinks {

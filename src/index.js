@@ -13,7 +13,7 @@ async function connect_aleph() {
     if (allAccounts.length == 0){
       throw "error: no account";
     }
-    localStorage.setItem("wallet_type", allAccounts[0].meta.source);
+    localStorage.setItem("wallet_nat", allAccounts[0].meta.source);
     localStorage.setItem("wallet_address", allAccounts[0].address);
     window.location.href = "./collector.html";
   }
@@ -25,10 +25,6 @@ async function connect_aleph() {
 }
 window.connect_aleph = connect_aleph;
 
-
-
-
-
 async function get_name() {
   var walletID = localStorage.getItem("wallet_address");
   var walletName = walletID.slice(0,12).concat(".....-").concat(walletID.slice(walletID.length - 3, walletID.length));
@@ -36,11 +32,33 @@ async function get_name() {
 }
 window.get_name = get_name;
 
+async function switch_project() {
+  var new_proj = document.getElementById("pro_name").value;
+  var url = window.location.toString();
+  var queryString = url.substring(url.indexOf('?') + 1);
+  if (new_proj != "current" && new_proj != queryString){
+    window.location.href = "./creator.html?".concat(new_proj);
+  }
+
+
+}
+window.switch_project = switch_project;
+
+function isAdmin() {
+  var adminedProjects = [];
+  adminedProjects.push("alephkazam_day1");
+  adminedProjects.push("gobazzinga");
+  adminedProjects.push("alephflower");
+  return adminedProjects;
+}
+
 async function load_creator() {
   var walletID = localStorage.getItem("wallet_address");
+  var creator_access = isAdmin(walletID);
   var walletName = walletID.slice(0,12).concat(".....-").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("dropdownMenuButton1").textContent = walletName;
-  var root = document.getElementById("cr").innerHTML;
+  
+
   var el = `
   <div class="shadowContainer">
             <p class="smText">
@@ -153,7 +171,26 @@ async function load_creator() {
               </div>
             </div>
   `;
-  var isContest = localStorage.getItem("contest");
+
+  if (creator_access.length == 0){
+    document.getElementById("creator_menu").style.display = "none";
+    document.getElementById("btns").style.display = "none";
+    document.getElementById("op").innerHTML = `<div>"You don't appear to admin any project right now. Click to go <a href="./lists-joined.html">BACK</a>."</div>`;
+    return;
+  }
+
+
+  var root2 = document.getElementById("pro_name");
+  console.log(root2);
+  var i = 0;
+  while (i < creator_access.length){
+    root2.innerHTML += `<option value="`.concat(creator_access[i]).concat(`">`.concat(creator_access[i]).concat(`</option>
+    `));
+    i += 1;
+  }
+  var root = document.getElementById("cr").innerHTML;
+  
+  var isContest = 0;
   console.log(isContest);
   if (isContest == 1){
     document.getElementById("cr").innerHTML = root + el;
@@ -161,11 +198,7 @@ async function load_creator() {
   
     
     
-    var siz = localStorage.getItem("size");
-    var mp = localStorage.getItem("mint_price");
-    var md = localStorage.getItem("mint_date");
-    var rs = localStorage.getItem("reg_start");
-    var re = localStorage.getItem("reg_end");
+   
     document.getElementById("ro").textContent = rs.replace("T"," "); 
     document.getElementById("rc").textContent = re.replace("T"," ");
     document.getElementById("md2").textContent = md.replace("T"," ");
@@ -174,7 +207,7 @@ async function load_creator() {
     document.getElementById("sz").textContent = siz;
     document.getElementById("mp").textContent = mp.concat(" ");
     document.getElementById("mp").innerHTML += `<img src="./img/colorful-icon.png" alt="" />`;
-    var hasEntered = localStorage.getItem("entered");
+    
     if (hasEntered == 1){
       document.getElementById("valid1").textContent = "1";
       document.getElementById("valid2").textContent = "1 Total Entries";
@@ -191,48 +224,108 @@ async function load_leaderboard() {
   var walletID = localStorage.getItem("wallet_address");
   var walletName = walletID.slice(0,12).concat(".....-").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("dropdownMenuButton1").textContent = walletName;
-  var hasEntered = localStorage.getItem("entered");
-  console.log("hui");
-  var gp = localStorage.getItem("goodpoints")
-  console.log(gp);
-  var root = document.getElementById("point_body");
-  var el = document.createElement("tr");
-  el.innerHTML = ` <tr >
-  <td >
-    <div style="margin-left: 4%;">
-      Zias
-    </div>
-  </td>
+  document.getElementById("you").textContent = walletName;
   
-  <td>
-    <div>
-        12
-    </div>
-  </td>
-  <td>
-    <div style="display:block;width: 100%;text-align:center;">
-        1
-    </div>
-    
-  </td>
-</tr>`
-  var childlist = el.children;
-  var el1 = childlist[0].children[0];
-  var el2 = childlist[1].children[0];
-  var el3 = childlist[2].children[0];
-  el1.textContent = "You";
-  el1.style.color = "red";
-  el2.textContent = localStorage.getItem("goodpoints");
-  el2.style.color = "red";
-  el3.textContent = "420";
-  el3.style.color = "red";
-  if (localStorage.getItem("goodpoints") == "15"){
-    el3.textContent = "68";
+  console.log("hui");
+  
+  var youFlag = false;
+  var pts = getPoints().sort(sorter).reverse();
+  var i = 0;
+  var root = document.getElementById("point_body");
+
+  while (i < pts.length && i < 10){
+    var el = document.createElement("tr");
+    var rank;
+    if (i == 0){
+      rank = 1;
+    }
+    else {
+      if (parseInt(pts[i][1]) == parseInt(pts[i - 1][1])){
+        rank = rank;
+      }
+      else {
+        rank = rank + 1;
+      }
+    } 
+  el.innerHTML = `
+    <td >
+                        <div style="margin-left: 4%;">
+                          `.concat(pts[i][0]).concat(`
+                        </div>
+                      </td>
+                      
+                      <td>
+                        <div>
+                            `.concat(pts[i][1]).concat(`
+                        </div>
+                      </td>
+                      <td>
+                        <div style="display:block;width: 100%;text-align:center;">
+                            `.concat(rank.toString()).concat(`
+                        </div>
+                        
+                      </td>
+                    `)));
+      
+      if (pts[i][0] == "You"){
+        var child = el.children[0].children[0];
+        child.style.color = "red";
+        child = el.children[1].children[0];
+        child.style.color = "red";
+        child = el.children[2].children[0];
+        child.style.color = "red";
+        youFlag = true;
+      }
+      root.appendChild(el);
+      i += 1;
   }
-  console.log(el1);
-  console.log(el2);
-  console.log(el3);
-  root.appendChild(el);
+
+  while (!youFlag){
+    if (parseInt(pts[i][1]) == parseInt(pts[i - 1][1])){
+      rank = rank;
+    }
+    else {
+      rank = rank + 1;
+    }
+    var user = pts[i][0];
+    if (user != "You"){
+      i += 1;
+    }
+    else {
+      
+      el = document.createElement('tr');
+      el.innerHTML = `
+    <td >
+                        <div style="margin-left: 4%;">
+                          `.concat(pts[i][0]).concat(`
+                        </div>
+                      </td>
+                      
+                      <td>
+                        <div>
+                            `.concat(pts[i][1]).concat(`
+                        </div>
+                      </td>
+                      <td>
+                        <div style="display:block;width: 100%;text-align:center;">
+                            `.concat(rank.toString()).concat(`
+                        </div>
+                        
+                      </td>
+                    `)));
+      var child = el.children[0].children[0];
+      child.style.color = "red";
+      child = el.children[1].children[0];
+      child.style.color = "red";
+      child = el.children[2].children[0];
+      child.style.color = "red";
+      root.appendChild(el);
+      youFlag = true;
+    }
+
+  }
+  
+ 
   
   
 }
@@ -242,7 +335,8 @@ async function load_earn() {
   var walletID = localStorage.getItem("wallet_address");
   var walletName = walletID.slice(0,12).concat(".....-").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("dropdownMenuButton1").textContent = walletName;
-  var wallet = localStorage.getItem("wallet");
+  document.getElementById("you").textContent = walletName;
+  var wallet = localStorage.getItem("wallet_nat");
   if (wallet == "Stoic"){
     document.getElementById("stoic_top").textContent = "Completed";
     document.getElementById("stoic_all").textContent = "Completed";
@@ -268,11 +362,7 @@ async function load_earn() {
     document.getElementById("stoic_all").textContent = "You Are Using Bitfinity";
   }
   else {}
-  var hasEntered = localStorage.getItem("entered");
-  if (hasEntered == 1){
-    document.getElementById("join_list_top").textContent = "Completed";
-    document.getElementById("join_list_all").textContent = "Completed";
-  }
+  
   
 }
 window.load_earn = load_earn;
@@ -284,6 +374,29 @@ async function load_wallet() {
   
 }
 window.load_wallet = load_wallet;
+
+async function load_entry() {
+  var walletID = localStorage.getItem("wallet_address");
+  var walletName = walletID.slice(0,12).concat(".....-").concat(walletID.slice(walletID.length - 3, walletID.length));
+  document.getElementById("dropdownMenuButton1").textContent = walletName;
+  var creator_access = isAdmin(walletID);
+  if (creator_access.length == 0){
+    window.location.href = "./creator.html";
+  }
+  
+}
+window.load_entry = load_entry;
+
+async function load_create_event() {
+  var walletID = localStorage.getItem("wallet_address");
+  
+  var creator_access = isAdmin(walletID);
+  if (creator_access.length == 0){
+    window.location.href = "./creator.html";
+  }
+  
+}
+window.load_create_event = load_create_event;
 
 async function load_club() {
   
@@ -318,16 +431,67 @@ async function load_cal() {
   var walletID = localStorage.getItem("wallet_address");
   var walletName = walletID.slice(0,12).concat(".....-").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("dropdownMenuButton1").textContent = walletName;
-  var rc = localStorage.getItem("reg_end");
-  document.getElementById("icpvg1").textContent = rc.replace("T"," ");
-  var spots = localStorage.getItem("winners");
-  document.getElementById("icpvg2").textContent = "    ".concat(spots).concat("   ");
-  var nat = localStorage.getItem("nature");
-  document.getElementById("icpvg3").textContent = (document.getElementById("icpvg3").textContent).concat(": ").concat(nat);
-  var hasEntered = localStorage.getItem("entered");
-  if (hasEntered != 1){
-    document.getElementById("icpvg4").textContent = "Not Entered";
+  document.getElementById("you").textContent = walletName;
+  
+  var proj = getProjects();
+  var i = 0;
+  var root = document.getElementById("root1");
+  while (i < proj.length){
+    var el = document.createElement('tr');
+    el.innerHTML = `
+    <td>
+                            <div class="userTd">
+                              <img
+                                class="projectUserImg"
+                                src="./img/project-user-img-3.svg"
+                                alt=""
+                              />
+                              <div>
+                                <div class="projectUserName">`.concat(proj[i][0]).concat(`</div>
+                                <div class="projectUserDetails">
+                                  Registered: Yesterday
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td>`.concat(proj[i][2]).concat(`</td>
+                          <td>`.concat(proj[i][3]).concat(`</td>
+                          <td>
+                            <a class="projectTableLink" href="#">REGISTER</a>
+                          </td>
+    `)));
+    root.appendChild(el);
+    i += 1;
   }
+
+  i = 0;
+  root = document.getElementById("root2");
+  while (i < proj.length){
+    var el = document.createElement('tr');
+    el.innerHTML = `
+    <td>
+                            <div class="userTd">
+                              <img
+                                class="projectUserImg"
+                                src="./img/project-user-img-3.svg"
+                                alt=""
+                              />
+                              <div>
+                                <div class="projectUserName">`.concat(proj[i][0]).concat(`</div>
+                                <div class="projectUserDetails">
+                                  Registered: Yesterday
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td>`.concat(proj[i][2]).concat(`</td>
+                          <td>`.concat(proj[i][3]).concat(`</td>
+                          
+    `)));
+    root.appendChild(el);
+    i += 1;
+  }
+  
 }
 window.load_cal = load_cal;
 
@@ -335,17 +499,108 @@ async function load_explore() {
   var walletID = localStorage.getItem("wallet_address");
   var walletName = walletID.slice(0,12).concat(".....-").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("dropdownMenuButton1").textContent = walletName;
-  var isContest = localStorage.getItem("contest");
-  if (isContest == 1){
-    var hasEntered = localStorage.getItem("entered");
-    if (hasEntered != 1){
-      document.getElementById("icpvg").textContent = "REGISTER";
+  document.getElementById("you").textContent = walletName;
+  var root = document.getElementById("home");
+  
+  var i = 0;
+  var proj = getProjects();
+  var elr = document.createElement('div');
+    elr.className = 'row cardRow';
+  while (i < proj.length){
+    if (i % 5 == 0 && i != 0){
+      root.appendChild(elr);
+      var space = document.createElement('br');
+      root.appendChild(space);
+      space = document.createElement('br');
+      root.appendChild(space);
+      elr = document.createElement('div');
+      elr.className = 'row cardRow';
     }
-    else {
-      document.getElementById("icpvg").textContent = "REGISTERED";
-    }
+    var el = document.createElement('div');
+    el.className = "col";
+    el.innerHTML = `
+    <div class="exploreCardBody">
+                        <div class="exploreCard">
+                          <img
+                            class="exploreCardImg"
+                            src="./img/explore-card-img-1.png"
+                            alt=""
+                          />
+                          <div class="exploreCardFooter">
+                            <div class="exploreCardText">`
+                              .concat(proj[i][0]).concat(
+                            `</div>
+                          </div>
+                        </div>
+                        <div class="exploreCardButton">
+                          <a id="icpvg" class="exploreCardBtn" href="password.html">Coming Soon</a>
+                        </div>
+                      </div>
+    `);
     
+    elr.appendChild(el);
+    i += 1;
   }
+  while (i % 5 != 0){
+    var el = document.createElement('div');
+    el.className = "col";
+    elr.appendChild(el);
+    i += 1;
+  }
+
+  root.appendChild(elr);
+
+  i = 0;
+ root = document.getElementById("profile");
+
+ elr = document.createElement('div');
+    elr.className = 'row cardRow';
+  while (i < proj.length){
+    if (i % 5 == 0 && i != 0){
+      root.appendChild(elr);
+      var space = document.createElement('br');
+      root.appendChild(space);
+      space = document.createElement('br');
+      root.appendChild(space);
+      elr = document.createElement('div');
+      elr.className = 'row cardRow';
+    }
+    var el = document.createElement('div');
+    el.className = "col";
+    el.innerHTML = `
+    <div class="exploreCardBody">
+                        <div class="exploreCard">
+                          <img
+                            class="exploreCardImg"
+                            src="./img/explore-card-img-1.png"
+                            alt=""
+                          />
+                          <div class="exploreCardFooter">
+                            <div class="exploreCardText">`
+                              .concat(proj[i][0]).concat(
+                            `</div>
+                          </div>
+                        </div>
+                        <div class="exploreCardButton">
+                          <a id="icpvg" class="exploreCardBtn" href="password.html">Coming Soon</a>
+                        </div>
+                      </div>
+    `);
+    
+    elr.appendChild(el);
+    i += 1;
+  }
+  while (i % 5 != 0){
+    var el = document.createElement('div');
+    el.className = "col";
+    elr.appendChild(el);
+    i += 1;
+  }
+
+  root.appendChild(elr);
+
+
+  
   
   
   
@@ -356,16 +611,59 @@ async function load_act() {
   var walletID = localStorage.getItem("wallet_address");
   var walletName = walletID.slice(0,12).concat(".....-").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("dropdownMenuButton1").textContent = walletName;
-  var hasEntered = localStorage.getItem("entered");
-  if (hasEntered == 1){
-    document.getElementById("icpv_tr").style.display = "table-row";
-    var md = localStorage.getItem("mint_date");
-    var mp = localStorage.getItem("mint_price");
-    var win = localStorage.getItem("winners");
-    document.getElementById("icpvg1").textContent = md.replace("T"," ");
-    document.getElementById("icpvg2").textContent = mp.concat(" ICP");
-    document.getElementById("icpvg3").textContent = win.concat(" Spots");
+  document.getElementById("you").textContent = walletName;
+
+  var proj = getProjects();
+  var i = 0;
+  var root = document.getElementById("root");
+  while (i < proj.length){
+    var el = document.createElement('tr');
+    el.innerHTML = `
+    <td>
+                        <div class="userTd">
+                          <img
+                            class="projectUserImg"
+                            src="./img/project-user-img-2.svg"
+                            alt=""
+                          />
+                          <div>
+                            <div class="projectUserName">`.concat(proj[i][0]).concat(`</div>
+                            <div class="projectUserDetails">
+                              Registered: Yesterday
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        Registered
+                        <img
+                          class="projectUserIcon"
+                          src="./img/project-table-icon-1.svg"
+                          alt=""
+                        />
+                      </td>
+                      <td>
+                        <div class="userTd userDetails">
+                          <div class="leftSide">
+                            <div>Minting date:</div>
+                            <div>Minting price:</div>
+                            <div>Raffle:</div>
+                          </div>
+                          <div class="rightSide">
+                            <div>`.concat(proj[i][2]).concat(`</div>
+                            <div>`.concat(proj[i][4]).concat(` ICP</div>
+                            <div>`.concat(proj[i][3]).concat(` spots</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <a class="projectTableLink" href="#">OFFICIAL LINK</a>
+                      </td>
+    `))));
+    root.appendChild(el);
+    i += 1;
   }
+
 }
 window.load_act = load_act;
 
@@ -373,42 +671,183 @@ async function load_list() {
   var walletID = localStorage.getItem("wallet_address");
   var walletName = walletID.slice(0,12).concat(".....-").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("dropdownMenuButton1").textContent = walletName;
-  var hasEntered = localStorage.getItem("entered");
-  
-  if (hasEntered == 1){
-    document.getElementById("icpvg").style.display = "table-row";
-    document.getElementById("stat_change").textContent = "Registered ";
-    document.getElementById("reg_change").textContent = "Registered Today";
-    var md = localStorage.getItem("mint_date");
-    document.getElementById("icpvg2").textContent = md.replace("T", " ");
-    console.log(hasEntered);
-    var e = document.getElementById("stat_change");
-    var el = document.createElement('img');
-    el.src = "./img/project-table-icon-1.svg";
-    el.class = "projectUserIcon";
-    e.appendChild(el);
-    console.log(el);
-    
-    
+  document.getElementById("you").textContent = walletName;
+  var proj = getProjects();
+  var root = document.getElementById("root");
+  var i = 0;
+  while (i < proj.length){
+    var el = document.createElement('tr');
+    el.innerHTML = `
+    <td>
+                              <div class="userTd">
+                                <img
+                                  class="projectUserImg"
+                                  src="./img/project-user-img-2.svg"
+                                  alt=""
+                                />
+                                <div>
+                                  <a class="projectUserName" href="community_page.html?swizz_bears">`.concat(proj[i][0]).concat(`</a>
+                                  <div class="projectUserDetails">
+                                    Registered: Yesterday
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              Registered
+                              <img
+                                class="projectUserIcon"
+                                src="./img/project-table-icon-1.svg"
+                                alt=""
+                              />
+                            </td>
+                            <td>`.concat(proj[i][2]).concat(`</td>
+    `));
+    root.appendChild(el);
+    i += 1;
   }
+
+  root = document.getElementById("root2");
+  i = 0;
+  while (i < proj.length){
+    var el = document.createElement('tr');
+    el.innerHTML = `
+    <td>
+                              <div class="userTd">
+                                <img
+                                  class="projectUserImg"
+                                  src="./img/project-user-img-2.svg"
+                                  alt=""
+                                />
+                                <div>
+                                  <a class="projectUserName" href="community_page.html?swizz_bears">`.concat(proj[i][0]).concat(`</a>
+                                  <div class="projectUserDetails">
+                                    Registered: Yesterday
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              Registered
+                              <img
+                                class="projectUserIcon"
+                                src="./img/project-table-icon-1.svg"
+                                alt=""
+                              />
+                            </td>
+                            <td>`.concat(proj[i][2]).concat(`</td>
+    `));
+    root.appendChild(el);
+    i += 1;
+  }
+
+  root = document.getElementById("root3");
+  i = 0;
+  while (i < proj.length){
+    var el = document.createElement('tr');
+    el.innerHTML = `
+    <td>
+                              <div class="userTd">
+                                <img
+                                  class="projectUserImg"
+                                  src="./img/project-user-img-2.svg"
+                                  alt=""
+                                />
+                                <div>
+                                  <a class="projectUserName" href="community_page.html?swizz_bears">`.concat(proj[i][0]).concat(`</a>
+                                  <div class="projectUserDetails">
+                                    Registered: Yesterday
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              Registered
+                              <img
+                                class="projectUserIcon"
+                                src="./img/project-table-icon-1.svg"
+                                alt=""
+                              />
+                            </td>
+                            <td>`.concat(proj[i][2]).concat(`</td>
+    `));
+    root.appendChild(el);
+    i += 1;
+  }
+
+  console.log(proj[1]);
+  
 }
 window.load_list = load_list;
 
+function getProjects() {
+  var plist = [];
+  plist.push(["Gobazzinga Tokens", "Not Registered", "March 14, 2023", "500", "2", "https://google.com"]);
+  plist.push(["Cosmic Rafts v2.0", "Not Registered", "March 30, 2023", "1000", "10", "https://google.com"]);
+  plist.push(["Hentai Arts", "Not Registered", "March 31, 2023", "200", "6.9", "https://google.com"]);
+  plist.push(["BTC Flower", "Not Registered", "April 3, 2023", "7777", "30", "https://google.com"]);
+  plist.push(["ETH Flower", "Not Registered", "April 3, 2023", "8888", "25", "https://google.com"]);
+  plist.push(["Phantasm", "Not Registered", "April 7, 2023", "10000", "3", "https://google.com"]);
+  return plist;
+}
+
+function getPoints() {
+  var plist = [];
+  plist.push(["User A", "3"]);
+  plist.push(["User B", "23"]);
+  plist.push(["User C", "1"]);
+  plist.push(["User D", "13"]);
+  plist.push(["User E", "25"]);
+  plist.push(["User F", "16"]);
+  plist.push(["User G", "7"]);
+  plist.push(["User H", "43"]);
+  plist.push(["User I", "13"]);
+  plist.push(["User J", "13"]);
+  plist.push(["User K", "5"]);
+  plist.push(["User L", "18"]);
+  plist.push(["You", "2"]);
+  return plist;
+}
+
+function getAnnouncements() {
+  var alist = [];
+  alist.push(["Hi", "April 3, 2023"]);
+  alist.push(["This is the beginning. \n Of this project", "April 4, 2023"]);
+  alist.push(["Hope You Like It", "April 6, 2023"]);
+ 
+  return alist;
+}
+
+function sorter(a, b) {
+  var x;
+  var y;
+  if (isNumeric(parseInt(a[1]))){
+    x = parseInt(a[1]);
+  }
+  else {
+    //console.log(parseInt(a[1]));
+    x = 0
+  }
+  if (isNumeric(parseInt(b[1]))){
+    y = parseInt(b[1]);
+  }
+  else {
+    y = 0
+  }
+  if (x === y) {
+      return 0;
+  }
+  else {
+      return (x < y) ? -1 : 1;
+  }
+}
+
 async function flush() {
-  localStorage.setItem("entered", 0);
-  localStorage.setItem("disco", 0);
-  localStorage.setItem("contest", 0);
-  localStorage.setItem("nature", "");
-  localStorage.setItem("winners", "");
-  localStorage.setItem("entrants", "");
-  localStorage.setItem("prize", "");
-  localStorage.setItem("size", "");
-  localStorage.setItem("mint_price", "");
-  localStorage.setItem("mint_date", "");
-  localStorage.setItem("reg_start", "");
-  localStorage.setItem("reg_end", "");
-  localStorage.setItem("announce", "");
-  localStorage.setItem("chat", "");
+  localStorage.setItem("wallet_address", "");
+  localStorage.setItem("wallet_nat", "");
+  localStorage.setItem("current_captcha", "dhsgfgakg");
+  localStorage.setItem("captcha_true", "");
+  
   console.log(0);
 }
 window.flush = flush;
@@ -436,8 +875,7 @@ async function add_whitelist() {
     document.getElementById('awl').removeAttribute("onclick");
     document.getElementById('awl').style.cursor = "default";
     document.getElementById('awl').style.color = "black";
-    localStorage.setItem("entered", 1);
-    localStorage.setItem("goodpoints", 15);
+    
     console.log(whitelists);
     
   }
@@ -446,56 +884,278 @@ window.add_whitelist = add_whitelist;
 async function load_comm() {
   var url = window.location.toString();
   var queryString = url.substring(url.indexOf('?') + 1);
-    addValueToWhiteList(queryString, localStorage.getItem("wallet_address"));
-    var isContest = localStorage.getItem("contest");
-    if (isContest == 1){
-      var hasEntered = localStorage.getItem("entered");
-      if (hasEntered == 1){
-        document.getElementById("awl").textContent = "Applied for Whitelist";
-        document.getElementById('awl').removeAttribute("onclick");
-        document.getElementById('awl').style.cursor = "default";
-        document.getElementById('awl').style.color = "black";
-      }
+  var head = document.getElementById("head_el");
+  var root = document.getElementById("root5");
+  var el = document.createElement('div');
+  el.className = "col-lg-7";
+  var el2 = document.createElement('div');
+  el2.className = "col-lg-5";
+  var proj = getProjects();
+  switch (queryString){
+    case "gobazzinga": {
+      console.log(queryString);
+      el.innerHTML = `
+      <p class="mainText heroText">
+              <span>Gobazzinga</span> is an NFT Marketplace with extensive creator
+              tools, gamification with built-in rewards and a P2E (Play to Earn)
+              platform. What is the goal? Our goal is to create a pleasant NFT
+              experience for all web 3 users. We do this by creating an
+              extremely easy onboarding process and an intuitive UX/UI
+              experience for new NFT collectors. We also incentivize collectors
+              using our extensive gamified features. For serious collectors, we
+              have some of the best NFT analytics tools suite embedded within
+              our platform.
+            </p>
+            <div class="nft">
+              <span class="bold">The NFT</span>
+              <p class="mainText">The ICPVerse Genesis NFT grants you:</p>
+              <ul>
+                <li class="mainText">Limited edition Genesis digital wearables</li>
+                <li class="mainText">First access to 10 new launches on GOODMINT</li>
+                <li class="mainText">DAO based 1/10000 of vote to ICPVerse governance</li>
+              </ul>
+            </div>
+            <div class="drop">
+              <span class="bold">The Drop</span>
+              <ul>
+                <li class="mainText">
+                  Signup for GOODMINT any time from now until 12:10 p.m. EST Jan
+                  30.
+                </li>
+                <li class="mainText">Early access mint begins 11 p.m. EST Jan 25.</li>
+              </ul>
+            </div>
+            <p class="bold boldText">
+              Learn more about ICPVerse at icpverse.app For all the latest news
+              and announcements, follow ICPVerse on Twitter @icpverse and join
+              discord at discord.gg/icpverse
+            </p>
+      `;
+      el2.innerHTML = `
+      <div class="icpCard">
+      <div class="cardHeader">
+          <h1 class="subHeading" id="awl" onclick="add_whitelist();" style="cursor: pointer;color: gold">Get Whitelisted! </h1>
+          <h1 class="subHeading" id="arl">No Giveaways Available</h1>
+      </div>
+      <div class="cardHeader">
+        <a id = "prevwl" class="loginButton2" onclick="to_whitelist();">&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;Last Whitelist&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</a>
+        
+        <a id = "prevraf" class="loginButton2" onclick="to_rafflelist();">&nbsp;&nbsp;  &nbsp;&nbsp;Last Giveaway &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;</a>
+      </div>
+   
+    <div class="cardFooter">
+      <img src="./img/flag.svg" alt=""> Report as spam
+    </div>
+  </div>
+      `;
+      root.appendChild(el);
+      root.appendChild(el2);
+      var el3 = document.createElement('script');
+            el3.src = 'https://cdn.jsdelivr.net/npm/@widgetbot/crate@3';
+            el3.async = true;
+            el3.defer = true;
+            el3.innerHTML =  `
+      
+      new Crate({
+        server: '929010651106541598', // ICPverse
+        channel: '929030706309529660' // #📢-announcements
+      })
+    
+      `;
+      head.appendChild(el3);
+      document.getElementById("root1").textContent = "Gobazzinga";
+      document.getElementById("tw1").href = "https://www.twitter.com/icpverse";
+      var link = document.getElementById("tw1").href.split("/");
+      document.getElementById("tw1").textContent = "@".concat(link[link.length - 1]);
+      document.getElementById("disco").href = "https://www.discord.gg/icpverse";
+      var link2 = document.getElementById("disco").href.split("//www.");
+      document.getElementById("disco").textContent = link2[link2.length - 1];
+      document.getElementById("root2").textContent = proj[0][2];
+      document.getElementById("root4").textContent = proj[1][2];
+      break;
     }
-    else {
-      document.getElementById("awl").textContent = "No Whitelisting Ongoing";
-      document.getElementById('awl').removeAttribute("onclick");
-      document.getElementById('awl').style.cursor = "default";
-      document.getElementById('awl').style.color = "black";
-    } 
+    case "btcflower": {
+      el.innerHTML = `<p class="mainText heroText">
+              <span>BTC Flower</span> is an NFT Marketplace with extensive creator
+              tools, gamification with built-in rewards and a P2E (Play to Earn)
+              platform. What is the goal? Our goal is to create a pleasant NFT
+              experience for all web 3 users. We do this by creating an
+              extremely easy onboarding process and an intuitive UX/UI
+              experience for new NFT collectors. We also incentivize collectors
+              using our extensive gamified features. For serious collectors, we
+              have some of the best NFT analytics tools suite embedded within
+              our platform.
+            </p>
+            <div class="nft">
+              <span class="bold">The NFT</span>
+              <p class="mainText">The ICPVerse Genesis NFT grants you:</p>
+              <ul>
+                <li class="mainText">Limited edition Genesis digital wearables</li>
+                <li class="mainText">First access to 10 new launches on GOODMINT</li>
+                <li class="mainText">DAO based 1/10000 of vote to ICPVerse governance</li>
+              </ul>
+            </div>
+            <div class="drop">
+              <span class="bold">The Drop</span>
+              <ul>
+                <li class="mainText">
+                  Signup for GOODMINT any time from now until 12:10 p.m. EST Jan
+                  30.
+                </li>
+                <li class="mainText">Early access mint begins 11 p.m. EST Jan 25.</li>
+              </ul>
+            </div>
+            <p class="bold boldText">
+              Learn more about ICPVerse at icpverse.app For all the latest news
+              and announcements, follow ICPVerse on Twitter @icpverse and join
+              discord at discord.gg/icpverse
+            </p>
+            `;
+        el2.innerHTML = `
+        <div class="icpCard">
+        <div class="cardHeader">
+            <h1 class="subHeading" id="awl" onclick="add_whitelist();" style="cursor: pointer;color: gold">Get Whitelisted! </h1>
+            <h1 class="subHeading" id="arl">No Giveaways Available</h1>
+        </div>
+        <div class="cardHeader">
+          <a id = "prevwl" class="loginButton2" onclick="to_whitelist();">&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;Last Whitelist&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</a>
+          
+          <a id = "prevraf" class="loginButton2" onclick="to_rafflelist();">&nbsp;&nbsp;  &nbsp;&nbsp;Last Giveaway &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;</a>
+        </div>
+     
+      <div class="cardFooter">
+        <img src="./img/flag.svg" alt=""> Report as spam
+      </div>
+    </div>
+        `;
+            root.appendChild(el);
+            root.appendChild(el2);
+            var el3 = document.createElement('script');
+            el3.src = 'https://cdn.jsdelivr.net/npm/@widgetbot/crate@3';
+            el3.async = true;
+            el3.defer = true;
+            el3.innerHTML =  `
+      
+      new Crate({
+        server: '929010651106541598', // ICPverse
+        channel: '929030706309529660' // #📢-announcements
+      })
+    
+      `;
+      head.appendChild(el3);
+      document.getElementById("root1").textContent = "BTC Flower";
+      document.getElementById("tw1").href = "https://www.twitter.com/icpverse";
+      var link = document.getElementById("tw1").href.split("/");
+      document.getElementById("tw1").textContent = "@".concat(link[link.length - 1]);
+      document.getElementById("disco").href = "https://www.discord.gg/icpverse";
+      var link2 = document.getElementById("disco").href.split("//www.");
+      document.getElementById("disco").textContent = link2[link2.length - 1];
+      document.getElementById("root2").textContent = proj[2][2];
+      document.getElementById("root4").textContent = proj[5][2];
+      document.getElementById("root3").href = proj[3][5];
+            break;
+    }
+    default: {
+      el.innerHTML = `
+      <p class="mainText heroText">
+      <span>Unfortunately,</span> no page with this name or code exits
+      on the GoodMint app. Please recheck the spelling, or search for something
+      else. Happy Minting!
+    </p>
+    
+      `;
+      root.appendChild(el);
+      document.getElementById("twtr-feed").style.display = "none";
+      document.getElementById("root6").style.display = "none";
+      document.getElementById("ann").style.display = "none";
+      document.getElementById("root1").textContent = "No Result Found";
+    }
+  }
+  
+    addValueToWhiteList(queryString, localStorage.getItem("wallet_address"));
+     
     
     
    
   }
 window.load_comm = load_comm;
 
+async function load_broadcast() {
+  var url = window.location.toString();
+  var queryString = url.substring(url.indexOf('?') + 1);
+  var wallet = localStorage.getItem("wallet_address");
+  var creator_access = isAdmin(wallet);
+  if (creator_access.length == 0){
+    window.location.href = "./creator.html";
+  }  
+    
+    
+   
+  }
+window.load_broadcast = load_broadcast;
+
+async function load_collab() {
+  var url = window.location.toString();
+  var queryString = url.substring(url.indexOf('?') + 1);
+  var wallet = localStorage.getItem("wallet_address");
+  var creator_access = isAdmin(wallet);
+  if (creator_access.length == 0){
+    window.location.href = "./creator.html";
+  }  
+    
+    
+   
+  }
+window.load_collab = load_collab;
+
+
+
 async function to_listpage() {
   window.location.href="./lists-joined.html";
 }
 window.to_listpage = to_listpage;
 
+async function to_broadcastpage() {
+  var url = window.location.toString();
+  var queryString = url.substring(url.indexOf('?') + 1);
+  window.location.href="./broadcast.html?".concat(queryString);
+}
+window.to_broadcastpage = to_broadcastpage;
+
 async function to_commpage() {
-  window.location.href="./community_page.html?icpverse_genesis";
+  var url = window.location.toString();
+  var queryString = url.substring(url.indexOf('?') + 1);
+  window.location.href="./community_page.html?".concat(queryString);
 }
 window.to_commpage = to_commpage;
 
 async function to_creatorpage() {
-  window.location.href="./creator.html";
+  var admin = isAdmin();
+  console.log(admin.length);
+  if (admin.length == 0){
+    window.location.href="./creator.html";
+  }
+  else {
+    window.location.href="./creator.html?".concat(admin[0]);
+  }
+  
 }
 window.to_creatorpage = to_creatorpage;
 
 async function to_createpage() {
-  window.location.href="./event_create.html?icpverse_genesis";
+  window.location.href="./event_create.html?alephkazam_day1";
 }
 window.to_createpage = to_createpage;
 
 async function to_announcementpage() {
-  window.location.href="./announcement.html?icpverse_genesis";
+  var url = window.location.toString();
+  var queryString = url.substring(url.indexOf('?') + 1);
+  window.location.href="./announcement.html?".concat(queryString);
 }
 window.to_announcementpage = to_announcementpage;
 
 async function to_holderpage() {
-  var wal = localStorage.getItem("wallet");
+  var wal = localStorage.getItem("wallet_nat");
   console.log(wal);
   if (wal == "Plug"){
     const ghost_canister = "xzcnc-myaaa-aaaak-abk7a-cai";
@@ -504,7 +1164,7 @@ async function to_holderpage() {
       await window.ic.plug.requestConnect({
         whitelist,
       });
-      window.location.href="./holder_club.html?icpverse_genesis";
+      window.location.href="./holder_club.html?alephkazam_day1";
     } catch (e) {
       console.log(e);
     }
@@ -520,7 +1180,7 @@ async function to_holderpage() {
     await window.ic.infinityWallet.requestConnect({
       whitelist,
     });
-    window.location.href="./holder_club.html?icpverse_genesis";
+    window.location.href="./holder_club.html?alephkazam_day1";
     } catch (e) {
       console.log(e);
     }
@@ -530,40 +1190,60 @@ async function to_holderpage() {
 window.to_holderpage = to_holderpage;
 
 async function to_clubpage() {
-  window.location.href="./club.html?icpverse_genesis";
+  window.location.href="./club.html?alephkazam_day1";
 }
 window.to_clubpage = to_clubpage;
 
 async function load_announcements() {
-  var new_ann = localStorage.getItem("announce");
-  var lines = new_ann.split("\n"); 
-  console.log(lines);
-  console.log(new_ann);
+  var url = window.location.toString();
+  var queryString = url.substring(url.indexOf('?') + 1);
+
+  if (queryString != "btcflower" && queryString != "gobazzinga"){
+    var root = document.getElementById("ann_holder");
+    var el = document.createElement('div');
+    el.className = "heroText3";
+    el.textContent = "This Project Does Not Exist on GoodMint. Try a different query."
+    root.appendChild(el);
+    return;
+  }
+  var annou = getAnnouncements();
+  
+  
   var root = document.getElementById("ann_holder");
   var i = 0;
-  var el = document.createElement('div');
-  while (i < lines.length){
-    
-    el.innerHTML = el.innerHTML.concat(lines[i]);
-    var linebreak = document.createElement("br");
+
+  while (i < annou.length){
+    var j = 0;
+    var lines = annou[i][1].concat(": \n").concat(annou[i][0]).split("\n"); 
+    var el = document.createElement('div');
+    el.className = "heroText3";
+    console.log(lines);
+    while (j < lines.length){
+      
+      
+      el.innerHTML = el.innerHTML.concat(lines[j]);
+      var linebreak = document.createElement("br");
+      el.appendChild(linebreak);
+      
+      j += 1;
+    }
+    linebreak = document.createElement("br");
     el.appendChild(linebreak);
-    
+    root.appendChild(el);
     i += 1;
   }
-  var linebreak = document.createElement("br");
-  el.appendChild(linebreak);
-  el.className = "heroText3";
-    root.appendChild(el);
+  
+  
+  
+  
+    
   
   
 }
 window.load_announcements = load_announcements;
 
 async function load_hclub() {
-  var new_chat = localStorage.getItem("chat");
-  if (new_chat == null){
-    new_chat = "";
-  }
+  
   console.log(new_chat);
   navigator.geolocation.getCurrentPosition(success);
   await new Promise(r => setTimeout(r, 2000));
@@ -614,26 +1294,20 @@ window.load_hclub = load_hclub;
 
 async function turn_discovery() {
   var el = document.getElementById("discovery");
-  var disc = localStorage.getItem("disco");
-  if (disc == 1){
-    el.textContent = "Turn On Discovery";
-    localStorage.setItem("disco", 0);
-  }
-  else {
-    el.textContent = "Turn Off Discovery";
-    localStorage.setItem("disco", 1);
-  }
+ 
   
   
 }
 window.turn_discovery = turn_discovery;
 
 async function publish_broadcast() {
+  var url = window.location.toString();
+  var queryString = url.substring(url.indexOf('?') + 1);
   var bc = document.getElementById("bc").value;
   var now = new Date().toUTCString();
   bc = now.substring(4).concat(": \n").concat(bc)
-  localStorage.setItem("announce", bc);
-  window.location.href = "./announcement.html?icpverse_genesis";
+  
+  window.location.href = "./announcement.html?".concat(queryString);
   
 }
 window.publish_broadcast = publish_broadcast;
@@ -645,8 +1319,7 @@ async function publish_chat() {
 
   var now = new Date().toUTCString();
   var new_chat = walletName.concat(" @ ").concat(now.substring(4).concat(": \n").concat(c));
-  var prev_chat = localStorage.getItem("chat");
-  localStorage.setItem("chat", prev_chat.concat("\n").concat(new_chat));
+  
   
   var lines = new_chat.split("\n"); 
   console.log(lines);
@@ -728,38 +1401,35 @@ async function submit_event() {
   let ent = document.getElementById("entrants").value;
   let win = document.getElementById("winners").value;
   let pri = document.getElementById("prize").value;
-  let siz = document.getElementById("size").value;
-  let mp = document.getElementById("mint_price").value;
-  let md = document.getElementById("mint_date").value;
+  
+  
   let rs = document.getElementById("reg_start").value;
   let re = document.getElementById("reg_end").value;
   console.log(nat.length);
   console.log(ent.length);
-  console.log(siz.length);
-  console.log(mp.length);
-  console.log(md.length);
+  
   console.log(rs.length);
   console.log(re.length);
 
-  var mdate = new Date(md);
+  
   var rsdate = new Date(rs);
   var rcdate = new Date(re);
 
   const now = new Date().toUTCString();
 
   
-  console.log(mdate);
+  
   console.log(now);
 
   
 
-  if (!isNumeric(ent) || !isNumeric(win) || !isNumeric(siz) || !isNumeric(mp)){
-    document.getElementById("response").textContent = "Minimum Entrants, Mint Price, Size of Collection, and Winner Count need to be numbers.";
+  if (!isNumeric(ent) || !isNumeric(win)){
+    document.getElementById("response").textContent = "Minimum Entrants,  and Winner Count need to be numbers.";
     return;
   }
 
-  if (mdate < rcdate || rcdate < rsdate){
-    document.getElementById("response").textContent = "Minting Date cannot be earlier than Registration Close Date. Close Date can't be Earlier than the Start Date.";
+  if (rcdate < rsdate){
+    document.getElementById("response").textContent = "Close Date can't be Earlier than the Start Date.";
     return;
   }
 
@@ -768,21 +1438,11 @@ async function submit_event() {
     return;
   }
   
-  if (((nat.length != 0 && ent.length != 0) &&   (md.length != 0 && mp.length != 0))  && ((re.length != 0  && rs.length != 0)  &&  (siz.length != 0 && win.length != 0))){
+  if (((nat.length != 0 && ent.length != 0))  && ((re.length != 0  && rs.length != 0)  &&  (siz.length != 0 ))){
     
     console.log("you are here");
-    localStorage.setItem("nature", nat);
-  
-    localStorage.setItem("entrants", ent);
-    localStorage.setItem("prize", pri);
-    localStorage.setItem("size", siz);
-    localStorage.setItem("mint_price", mp);
-    localStorage.setItem("mint_date", md);
-    localStorage.setItem("reg_start", rs);
-    localStorage.setItem("reg_end", re);
-    localStorage.setItem("winners", win);
-    localStorage.setItem("contest", 1);
-    window.location.href = "./creator.html?icpverse_genesis";
+    
+    window.location.href = "./creator.html?alephkazam_day1";
     
   }
   else {
@@ -802,7 +1462,7 @@ function validateForm2() {
 
   let walletID = localStorage.getItem("wallet_address");
   if (!walletID) {
-    alert("Wallet address is required");
+    alert("WalletID is required");
     return;
   }
   console.log(walletID);
@@ -856,7 +1516,7 @@ function validateForm3() {
 
     let url = "http://localhost:5000/api/setdetails";
     console.log("here");
-    //let walletID = localStorage.getItem("walletID");
+    
 
     var s1 = randomGen(5);
     var s2 = randomGen(5);
@@ -896,9 +1556,9 @@ window.validateForm3 = validateForm3;
 
 function captcha_confirm() {
   var cap = document.getElementById("pwdWrite").value;
-  if (cap == localStorage.getItem("currentCaptcha")){
+  if (cap == localStorage.getItem("current_captcha")){
     window.location.href = "welcome.html";
-    localStorage.setItem("captchaTrue", "Y");
+    localStorage.setItem("captcha_true", "Y");
   }
   else {
     document.getElementById("response2").textContent = "Captcha Mismatch. Try Again.";
@@ -908,9 +1568,24 @@ function captcha_confirm() {
 }
 window.captcha_confirm = captcha_confirm;
 
-function captcha_test() {
+async function captcha_test() {
+  var url = window.location.toString();
+  var queryString = url.substring(url.indexOf('?') + 1);
+  if (queryString != "gobazzinga" && queryString != "btcflower"){
+    document.getElementById("project_head").style.display = "none";
+    document.getElementById("captchaWrite").style.display = "none";
+    document.getElementById("pwdWrite").style.display = "none";
+    document.getElementById("gobtn").style.display = "none";
+    document.getElementById("h3x").textContent = "Redirecting Back in 5 sec..";
+    document.getElementById("h2x").textContent = "This Project Does Not Exist on GoodMint.";
+    await new Promise(r => setTimeout(r, 3000));
+    window.location.href = "./explore.html";
+    console.log(queryString);
+    return;
+  }
+  document.getElementById("project_head").textContent = queryString;
   var cap = randomGen3(6);
-  localStorage.setItem("currentCaptcha", cap);
+  localStorage.setItem("current_captcha", cap);
   document.getElementById("response2").textContent = "Please Enter Captcha: ".concat(cap);
 
 }
@@ -921,9 +1596,9 @@ function authenticate() {
   var cap = document.getElementById("captchaWrite").value;
   var flag = false;
   
-  if (cap == localStorage.getItem("currentCaptcha")){
+  if (cap == localStorage.getItem("current_captcha")){
     flag = true;
-    localStorage.setItem("captchaTrue", "Y");
+    localStorage.setItem("captcha_true", "Y");
   }
   
   if (pwd == "btcf" && flag) {
@@ -1179,7 +1854,27 @@ function addValueToRaffleList(key, value) {
 }
 
 function isNumeric(str) {
-  if (typeof str != "string") return false // we only process strings!  
+  //console.log(typeof str);
+  if (typeof str != "string" && typeof str != "number") return false // we only process strings!  
   return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
          !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
 }
+
+function expand_support(){
+  var expand = false;
+  if (document.getElementById("s1").style.display == "none"){
+    expand = true;
+  }
+  if (expand){
+    document.getElementById("s1").style.display = "block";
+    document.getElementById("s2").style.display = "block";
+    document.getElementById("s3").style.display = "block";
+  }
+  else {
+    document.getElementById("s1").style.display = "none";
+    document.getElementById("s2").style.display = "none";
+    document.getElementById("s3").style.display = "none";
+  }
+  
+}
+window.expand_support = expand_support;

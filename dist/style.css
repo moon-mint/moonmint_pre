@@ -47,11 +47,11 @@ body {
   font-family: "Quantico";
 }
 .homeFooter .footerNav:hover {
-  color: #df0053;
+  color: #00032b;
 }
 /* Project Section */
 .projectSection {
-  background-color: #df0053;
+  background-color: #00032b;
 }
 .pageHeader {
   padding: 2.5em;
@@ -61,9 +61,10 @@ body {
   text-decoration: none;
 }
 .mainHeading {
-  font-size: 3.2em;
+  font-size: 3.6em;
+  font-style: italic;
   color: white;
-  font-family: "Ultra";
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .twit  {
   max-width: 45%;
@@ -76,7 +77,7 @@ body {
   padding: 5em 0 10em 0;
 }
 .projectSection .mainHeading span {
-  border-bottom: 7px solid #ffd900;
+  border-bottom: 7px solid rgb(202, 12, 43);
   display: inline-block;
 }
 .projectContents .formBody {
@@ -91,7 +92,8 @@ body {
 }
 .projectContents .formBody .commonInput {
   width: 100%;
-  font-size: 0.9em;
+  height: 100%;
+  font-size: 1.2em;
   border: 1px solid transparent;
   outline: none;
   padding: 0.7em 0.9em;
@@ -99,7 +101,7 @@ body {
   color: black;
   font-weight: 500;
   transition: 200ms all ease-in-out;
-  margin-bottom: 2em;
+  margin-bottom: 2.5em;
 }
 .projectContents .formBody .commonInput::placeholder {
   color: #0000004d;

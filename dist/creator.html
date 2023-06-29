@@ -32,7 +32,7 @@
         </div>
         <div id="creator_menu" class="menuWrapper">
           <div class="menuTabs">
-            <a class="menuTab" href="lists-joined.html">Collector</a>
+            <a class="menuTab" href="./collector.html">Collector</a>
             <a class="menuTab active" onclick="to_creatorpage();" style="cursor: pointer;">Creator</a>
           </div>
           <a>
@@ -58,7 +58,7 @@
               ><span><img src="./img/dashboard-icon.svg" alt="" /></span
               >Dashboard</a
             >
-            <a class="sideMenuLink" onclick="to_entrylistpage();" style="cursor: pointer;"
+            <a class="sideMenuLink" href="./entries.html" style="cursor: pointer;"
               ><span><img src="./img/entry-list-icon.svg" alt="" /></span>Entry
               List</a
             >
@@ -77,16 +77,16 @@
             ><span><img src="./img/tools-icon.svg" alt="" /></span>Tools
             <span class="blueClr">(coming soon)</span>
           </a>
-            <div class="supportText">SUPPORT</div>
-            <a class="sideMenuLink" href="https://docs.google.com/document/d/1PhPMrmy4Pnw9UiiD35J3jy9PQq82eTiaeMcttDiawCo/edit?usp=sharing"
+            <div class="supportText" onclick="expand_support();" style="cursor: pointer;">SUPPORT </div>
+            <a id="s1" class="sideMenuLink" style="display:none;" href="https://docs.google.com/document/d/1PhPMrmy4Pnw9UiiD35J3jy9PQq82eTiaeMcttDiawCo/edit?usp=sharing"
               ><span><img src="./img/documentation-cion.svg" alt="" /></span
               >Documentation
             </a>
-            <a class="sideMenuLink" href="https://discord.com/invite/YGJDGkRppV"
+            <a id="s2" class="sideMenuLink" href="https://discord.com/invite/YGJDGkRppV" style="display:none;"
               ><span><img src="./img/discord-icon.svg" alt="" /></span>Join
               Discord
             </a>
-            <a class="sideMenuLink" href="https://twitter.com/icpverse?lang=en"
+            <a id="s3" class="sideMenuLink" href="https://twitter.com/icpverse?lang=en" style="display:none;"
               ><span><img src="./img/twitter-icon.svg" alt="" /></span>Twitter
             </a>
           </div>
