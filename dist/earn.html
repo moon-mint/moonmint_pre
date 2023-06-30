@@ -32,7 +32,7 @@
         </div>
         <div class="menuWrapper">
           <div class="menuTabs">
-            <a class="menuTab active" href="#">Collector</a>
+            <a class="menuTab active" href="./collector.html">Collector</a>
             <a class="menuTab" onclick="to_creatorpage();" style="cursor: pointer;">Creator</a>
           </div>
           <a class="sideMenuLink backLink" href="./explore.html"
@@ -49,7 +49,7 @@
             </div>
           </div>
           <div class="sideMenuLinks">
-            <a class="sideMenuLink" href="lists-joined.html"
+            <a class="sideMenuLink" href="collector.html"
               ><span><img src="./img/lists-joined-icon.svg" alt="" /></span
               >Lists Joined</a
             >
@@ -64,24 +64,25 @@
               ><span><img src="./img/calendar-icon.svg" alt="" /></span>Calendar
             </a>
             
-            <a class="sideMenuLink" href="./goodpoints.html"
-              ><span><img src="./img/tools-icon.svg" alt="" /></span>Good Points
+            <div class="supportText" onclick="expand_points();" style="cursor: pointer;">POINTSKAZAM </div>
+            <a id="s11" class="sideMenuLink" href="./pointskazam.html" 
+              ><span><img src="./img/tools-icon.svg" alt="" /></span>Leaderboard
               <span class="blueClr"> (NEW) </span>
             </a>
-            <a class="sideMenuLink active" href="./earn.html"
+            <a id="s12" class="sideMenuLink active" href="./earn.html" 
               ><span><img src="./img/tools-icon.svg" alt="" /></span>Earn Points
               <span class="blueClr"> (NEW) </span>
             </a>
-            <div class="supportText">SUPPORT</div>
-            <a class="sideMenuLink" href="https://docs.google.com/document/d/1PhPMrmy4Pnw9UiiD35J3jy9PQq82eTiaeMcttDiawCo/edit?usp=sharing"
+            <div class="supportText" onclick="expand_support();" style="cursor: pointer;">SUPPORT </div>
+            <a id="s1" class="sideMenuLink" style="display:none;" href="https://docs.google.com/document/d/1PhPMrmy4Pnw9UiiD35J3jy9PQq82eTiaeMcttDiawCo/edit?usp=sharing"
               ><span><img src="./img/documentation-cion.svg" alt="" /></span
               >Documentation
             </a>
-            <a class="sideMenuLink" href="https://discord.com/invite/YGJDGkRppV"
+            <a id="s2" class="sideMenuLink" href="https://discord.com/invite/YGJDGkRppV" style="display:none;"
               ><span><img src="./img/discord-icon.svg" alt="" /></span>Join
               Discord
             </a>
-            <a class="sideMenuLink" href="https://twitter.com/icpverse?lang=en"
+            <a id="s3" class="sideMenuLink" href="https://twitter.com/icpverse?lang=en" style="display:none;"
               ><span><img src="./img/twitter-icon.svg" alt="" /></span>Twitter
             </a>
           </div>

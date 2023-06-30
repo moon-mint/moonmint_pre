@@ -1878,3 +1878,20 @@ function expand_support(){
   
 }
 window.expand_support = expand_support;
+
+function expand_points(){
+  var expand = false;
+  if (document.getElementById("s11").style.display == "none"){
+    expand = true;
+  }
+  if (expand){
+    document.getElementById("s11").style.display = "block";
+    document.getElementById("s12").style.display = "block";
+  }
+  else {
+    document.getElementById("s11").style.display = "none";
+    document.getElementById("s12").style.display = "none";
+  }
+  
+}
+window.expand_points = expand_points;

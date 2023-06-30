@@ -509,7 +509,7 @@ body {
   border-color: var(--loginThemeColor);
 }
 .back {
-  background-color: rgb(185, 18, 185);
+  background-color: #b37ce6;
   color: cornsilk;
   position: absolute;
   cursor: pointer;
@@ -601,7 +601,7 @@ body {
 }
 .loginButton2 {
   display: inline;
-  background-color: magenta;
+  background-color: #9a45eb;
   color: cornsilk;
   width: 50%;
   max-width: 50%;
@@ -620,14 +620,14 @@ body {
 }
 .loginButton2:hover {
   color: var(--loginThemeColor);
-  background-color: cyan;
+  background-color: rgb(255, 152, 238);
   border-color: var(--loginThemeColor);
   cursor: pointer;
 }
 
 .loginButton3 {
   display: inline;
-  background-color: rgb(236, 17, 236);
+  background-color: #9a45eb;
   color: cornsilk;
   width: 50%;
   max-width: 50%;
@@ -647,13 +647,13 @@ body {
 }
 .loginButton3:hover {
   color: var(--loginThemeColor);
-  background-color: cyan;
+  background-color: rgb(255, 152, 238);
   border-color: var(--loginThemeColor);
   cursor: pointer;
 }
 .loginButton4 {
   display:block;
-  background-color: rgb(207, 5, 207);
+  background-color: #9a45eb;
   color: cornsilk;
   width: 10%;
   max-width: 10%;
@@ -673,7 +673,7 @@ body {
 }
 .loginButton4:hover {
   color: var(--loginThemeColor);
-  background-color: cyan;
+  background-color: rgb(255, 152, 238);
   border-color: var(--loginThemeColor);
   cursor: pointer;
 }
