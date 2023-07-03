@@ -1592,7 +1592,7 @@ body.home {
 }
 .homeWrapper {
   text-align: center;
-  padding: 6em 3em;
+  padding: .1em 3em;
 }
 .homeWrapper .homeText {
   color: #ffea73;
@@ -1658,7 +1658,7 @@ body.home .pageHeader.homeHeader {
   border: none;
   display: block;
   text-align: right;
-  padding: 0em 2em 0 2em;
+  padding: 0em 2em 0 .1em;
 }
 body.home .pageHeader.homeHeader .walletBtn {
   text-align: center;

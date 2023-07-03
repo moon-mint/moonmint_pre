@@ -27,7 +27,7 @@ window.connect_aleph = connect_aleph;
 
 async function get_name() {
   var walletID = localStorage.getItem("wallet_address");
-  var walletName = walletID.slice(0,12).concat(".....-").concat(walletID.slice(walletID.length - 3, walletID.length));
+  var walletName = walletID.slice(0,12).concat(".....").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("h1x").textContent = "Hi ".concat(walletName);
 }
 window.get_name = get_name;
@@ -55,7 +55,7 @@ function isAdmin() {
 async function load_creator() {
   var walletID = localStorage.getItem("wallet_address");
   var creator_access = isAdmin(walletID);
-  var walletName = walletID.slice(0,12).concat(".....-").concat(walletID.slice(walletID.length - 3, walletID.length));
+  var walletName = walletID.slice(0,12).concat(".....").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("dropdownMenuButton1").textContent = walletName;
   
 
@@ -222,7 +222,7 @@ window.load_creator = load_creator;
 
 async function load_leaderboard() {
   var walletID = localStorage.getItem("wallet_address");
-  var walletName = walletID.slice(0,12).concat(".....-").concat(walletID.slice(walletID.length - 3, walletID.length));
+  var walletName = walletID.slice(0,12).concat(".....").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("dropdownMenuButton1").textContent = walletName;
   document.getElementById("you").textContent = walletName;
   
@@ -333,7 +333,7 @@ window.load_leaderboard = load_leaderboard;
 
 async function load_earn() {
   var walletID = localStorage.getItem("wallet_address");
-  var walletName = walletID.slice(0,12).concat(".....-").concat(walletID.slice(walletID.length - 3, walletID.length));
+  var walletName = walletID.slice(0,12).concat(".....").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("dropdownMenuButton1").textContent = walletName;
   document.getElementById("you").textContent = walletName;
   var wallet = localStorage.getItem("wallet_nat");
@@ -369,7 +369,7 @@ window.load_earn = load_earn;
 
 async function load_wallet() {
   var walletID = localStorage.getItem("wallet_address");
-  var walletName = walletID.slice(0,12).concat(".....-").concat(walletID.slice(walletID.length - 3, walletID.length));
+  var walletName = walletID.slice(0,12).concat(".....").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("dropdownMenuButton1").textContent = walletName;
   
 }
@@ -377,7 +377,7 @@ window.load_wallet = load_wallet;
 
 async function load_entry() {
   var walletID = localStorage.getItem("wallet_address");
-  var walletName = walletID.slice(0,12).concat(".....-").concat(walletID.slice(walletID.length - 3, walletID.length));
+  var walletName = walletID.slice(0,12).concat(".....").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("dropdownMenuButton1").textContent = walletName;
   var creator_access = isAdmin(walletID);
   if (creator_access.length == 0){
@@ -429,7 +429,7 @@ function success(pos) {
 
 async function load_cal() {
   var walletID = localStorage.getItem("wallet_address");
-  var walletName = walletID.slice(0,12).concat(".....-").concat(walletID.slice(walletID.length - 3, walletID.length));
+  var walletName = walletID.slice(0,12).concat(".....").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("dropdownMenuButton1").textContent = walletName;
   document.getElementById("you").textContent = walletName;
   
@@ -497,7 +497,7 @@ window.load_cal = load_cal;
 
 async function load_explore() {
   var walletID = localStorage.getItem("wallet_address");
-  var walletName = walletID.slice(0,12).concat(".....-").concat(walletID.slice(walletID.length - 3, walletID.length));
+  var walletName = walletID.slice(0,12).concat(".....").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("dropdownMenuButton1").textContent = walletName;
   document.getElementById("you").textContent = walletName;
   var root = document.getElementById("home");
@@ -609,7 +609,7 @@ window.load_explore = load_explore;
 
 async function load_act() {
   var walletID = localStorage.getItem("wallet_address");
-  var walletName = walletID.slice(0,12).concat(".....-").concat(walletID.slice(walletID.length - 3, walletID.length));
+  var walletName = walletID.slice(0,12).concat(".....").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("dropdownMenuButton1").textContent = walletName;
   document.getElementById("you").textContent = walletName;
 
@@ -669,7 +669,7 @@ window.load_act = load_act;
 
 async function load_list() {
   var walletID = localStorage.getItem("wallet_address");
-  var walletName = walletID.slice(0,12).concat(".....-").concat(walletID.slice(walletID.length - 3, walletID.length));
+  var walletName = walletID.slice(0,12).concat(".....").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("dropdownMenuButton1").textContent = walletName;
   document.getElementById("you").textContent = walletName;
   var proj = getProjects();
@@ -1315,7 +1315,7 @@ window.publish_broadcast = publish_broadcast;
 async function publish_chat() {
   var c = document.getElementById("bc").value;
   var walletID = localStorage.getItem("wallet_address");
-  var walletName = walletID.slice(0,12).concat(".....-").concat(walletID.slice(walletID.length - 3, walletID.length));
+  var walletName = walletID.slice(0,12).concat(".....").concat(walletID.slice(walletID.length - 3, walletID.length));
 
   var now = new Date().toUTCString();
   var new_chat = walletName.concat(" @ ").concat(now.substring(4).concat(": \n").concat(c));
