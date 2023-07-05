@@ -847,6 +847,12 @@ async function flush() {
   localStorage.setItem("wallet_nat", "");
   localStorage.setItem("current_captcha", "dhsgfgakg");
   localStorage.setItem("captcha_true", "");
+  localStorage.setItem("nat_aleph", "");
+  localStorage.setItem("ent_aleph", "");
+  localStorage.setItem("rs_aleph", "");
+  localStorage.setItem("re_aleph", "");
+  localStorage.setItem("winners_aleph", "");
+  localStorage.setItem("contest_aleph", "0");
   
   console.log(0);
 }
@@ -1142,6 +1148,46 @@ async function to_creatorpage() {
 }
 window.to_creatorpage = to_creatorpage;
 
+
+async function to_entrypage() {
+  var admin = isAdmin();
+  console.log(admin.length);
+  if (admin.length == 0){
+    window.location.href="./creator.html";
+  }
+  else {
+    window.location.href="./entries.html?".concat(admin[0]);
+  }
+  
+}
+window.to_entrypage = to_entrypage;
+
+async function to_collabpage() {
+  var admin = isAdmin();
+  console.log(admin.length);
+  if (admin.length == 0){
+    window.location.href="./creator.html";
+  }
+  else {
+    window.location.href="./collab.html?".concat(admin[0]);
+  }
+  
+}
+window.to_collabpage = to_collabpage;
+
+async function to_resultpage() {
+  var admin = isAdmin();
+  console.log(admin.length);
+  if (admin.length == 0){
+    window.location.href="./creator.html";
+  }
+  else {
+    window.location.href="./results.html?".concat(admin[0]);
+  }
+  
+}
+window.to_resultpage = to_resultpage;
+
 async function to_createpage() {
   window.location.href="./event_create.html?alephkazam_day1";
 }
@@ -1294,7 +1340,12 @@ window.load_hclub = load_hclub;
 
 async function turn_discovery() {
   var el = document.getElementById("discovery");
- 
+  if (el.textContent != "Turn On Discovery"){
+    el.textContent = "Turn On Discovery";
+  }
+  else {
+    el.textContent = "Turn Off Discovery";
+  }
   
   
 }
@@ -1438,9 +1489,14 @@ async function submit_event() {
     return;
   }
   
-  if (((nat.length != 0 && ent.length != 0))  && ((re.length != 0  && rs.length != 0)  &&  (siz.length != 0 ))){
+  if (((nat.length != 0 && ent.length != 0))  && ((re.length != 0  && rs.length != 0)  &&  (win.length != 0 ))){
     
-    console.log("you are here");
+    localStorage.setItem("nat_aleph", nat);
+    localStorage.setItem("ent_aleph", ent);
+    localStorage.setItem("rs_aleph", rs);
+    localStorage.setItem("re_aleph", re);
+    localStorage.setItem("winners_aleph", win);
+    localStorage.setItem("contest_aleph", "1");
     
     window.location.href = "./creator.html?alephkazam_day1";
     

@@ -47,7 +47,7 @@ body {
   font-family: "Quantico";
 }
 .homeFooter .footerNav:hover {
-  color: #00032b;
+  color: gold;
 }
 /* Project Section */
 .projectSection {
@@ -450,7 +450,7 @@ body {
   transform: translateY(-10%);
 }
 .icpPageFooter {
-  background: #df0053;
+  background: #00032b;
   padding: 1em 0;
   margin-top: 20em;
 }
@@ -519,7 +519,7 @@ body {
   font-weight: 600;
   font-size: 1.2em;
   left: 90%;
-  top: 25%;
+  top: 36%;
 }
 .back2 {
   background-color: rgb(185, 18, 185);
@@ -532,7 +532,7 @@ body {
   font-weight: 600;
   font-size: 1.2em;
   left: 78%;
-  top: 25%;
+  top: 36%;
 }
 .back3 {
   background-color: rgb(185, 18, 185);
@@ -545,7 +545,7 @@ body {
   font-weight: 600;
   font-size: 1.2em;
   left: 70.9%;
-  top: 25%;
+  top: 36%;
 }
 .back4 {
   background-color: rgb(185, 18, 185);
@@ -558,7 +558,7 @@ body {
   font-weight: 600;
   font-size: 1.2em;
   left: 83.5%;
-  top: 25%;
+  top: 36%;
 }
 .back5 {
   background-color: rgb(185, 18, 185);
@@ -571,7 +571,7 @@ body {
   font-weight: 600;
   font-size: 1.2em;
   left: 82.9%;
-  top: 25%;
+  top: 36%;
 }
 .back6 {
   background-color: rgb(185, 18, 185);
@@ -584,7 +584,7 @@ body {
   font-weight: 600;
   font-size: 1.2em;
   width:8%;
-  top: 25%;
+  top: 36%;
 }
 .back7 {
   background-color: rgb(185, 18, 185);
@@ -597,7 +597,7 @@ body {
   font-weight: 600;
   font-size: 1.2em;
   width: 20%;
-  top: 25%;
+  top: 36%;
 }
 .loginButton2 {
   display: inline;
@@ -620,7 +620,7 @@ body {
 }
 .loginButton2:hover {
   color: var(--loginThemeColor);
-  background-color: rgb(255, 152, 238);
+  background-color: rgb(252, 255, 64);
   border-color: var(--loginThemeColor);
   cursor: pointer;
 }
@@ -647,7 +647,7 @@ body {
 }
 .loginButton3:hover {
   color: var(--loginThemeColor);
-  background-color: rgb(255, 152, 238);
+  background-color: rgb(252, 255, 64);
   border-color: var(--loginThemeColor);
   cursor: pointer;
 }
@@ -673,7 +673,7 @@ body {
 }
 .loginButton4:hover {
   color: var(--loginThemeColor);
-  background-color: rgb(255, 152, 238);
+  background-color: rgb(252, 255, 64);
   border-color: var(--loginThemeColor);
   cursor: pointer;
 }
