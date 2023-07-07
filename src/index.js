@@ -455,7 +455,7 @@ async function load_cal() {
                             </div>
                           </td>
                           <td>`.concat(proj[i][2]).concat(`</td>
-                          <td>`.concat(proj[i][3]).concat(`</td>
+                          <td style="text-align:center;width:1%;">`.concat(proj[i][3]).concat(`</td>
                           <td>
                             <a class="projectTableLink" href="#">REGISTER</a>
                           </td>
@@ -485,7 +485,7 @@ async function load_cal() {
                             </div>
                           </td>
                           <td>`.concat(proj[i][2]).concat(`</td>
-                          <td>`.concat(proj[i][3]).concat(`</td>
+                          <td style="width:1%;text-align:center">`.concat(proj[i][3]).concat(`</td>
                           
     `)));
     root.appendChild(el);
@@ -533,10 +533,10 @@ async function load_explore() {
                           </div>
                         </div>
                         <div class="exploreCardButton">
-                          <a id="icpvg" class="exploreCardBtn" href="password.html">Coming Soon</a>
+                          <a id="icpvg" class="exploreCardBtn" href="community_page.html?`.concat(proj[i][0]).concat(`">Coming Soon</a>
                         </div>
                       </div>
-    `);
+    `));
     
     elr.appendChild(el);
     i += 1;
@@ -686,7 +686,7 @@ async function load_list() {
                                   alt=""
                                 />
                                 <div>
-                                  <a class="projectUserName" href="community_page.html?swizz_bears">`.concat(proj[i][0]).concat(`</a>
+                                  <a class="projectUserName" href="community_page.html?`.concat(proj[i][0]).concat(`">`.concat(proj[i][0]).concat(`</a>
                                   <div class="projectUserDetails">
                                     Registered: Yesterday
                                   </div>
@@ -701,8 +701,8 @@ async function load_list() {
                                 alt=""
                               />
                             </td>
-                            <td>`.concat(proj[i][2]).concat(`</td>
-    `));
+                            <td style="width:28%;text-align:center;">`.concat(proj[i][2]).concat(`</td>
+    `)));
     root.appendChild(el);
     i += 1;
   }
@@ -735,7 +735,7 @@ async function load_list() {
                                 alt=""
                               />
                             </td>
-                            <td>`.concat(proj[i][2]).concat(`</td>
+                            <td style="width:28%;text-align:center;">`.concat(proj[i][2]).concat(`</td>
     `));
     root.appendChild(el);
     i += 1;
@@ -769,7 +769,7 @@ async function load_list() {
                                 alt=""
                               />
                             </td>
-                            <td>`.concat(proj[i][2]).concat(`</td>
+                            <td style="width:28%;text-align:center;">`.concat(proj[i][2]).concat(`</td>
     `));
     root.appendChild(el);
     i += 1;
@@ -782,12 +782,12 @@ window.load_list = load_list;
 
 function getProjects() {
   var plist = [];
-  plist.push(["Gobazzinga Tokens", "Not Registered", "March 14, 2023", "500", "2", "https://google.com"]);
-  plist.push(["Cosmic Rafts v2.0", "Not Registered", "March 30, 2023", "1000", "10", "https://google.com"]);
-  plist.push(["Hentai Arts", "Not Registered", "March 31, 2023", "200", "6.9", "https://google.com"]);
-  plist.push(["BTC Flower", "Not Registered", "April 3, 2023", "7777", "30", "https://google.com"]);
-  plist.push(["ETH Flower", "Not Registered", "April 3, 2023", "8888", "25", "https://google.com"]);
-  plist.push(["Phantasm", "Not Registered", "April 7, 2023", "10000", "3", "https://google.com"]);
+  plist.push(["Gobazzinga Tokens", "Not Registered", "Sept 14, 2023", "50", "2", "https://google.com"]);
+  plist.push(["Nodle Rafts v2.0", "Not Registered", "Sept 30, 2023", "  10", "10", "https://google.com"]);
+  plist.push(["Hentai Arts", "Not Registered", "Aug 31, 2023", "  2", "6.9", "https://google.com"]);
+  plist.push(["ALEPH Flower", "Not Registered", "Oct 3, 2023", "  77", "30", "https://google.com"]);
+  plist.push(["DOT Bulls", "Not Registered", "Sept 3, 2023", "  1", "25", "https://google.com"]);
+  plist.push(["Phantasm", "Not Registered", "Oct 7, 2023", "  10", "3", "https://google.com"]);
   return plist;
 }
 
@@ -898,7 +898,7 @@ async function load_comm() {
   el2.className = "col-lg-5";
   var proj = getProjects();
   switch (queryString){
-    case "gobazzinga": {
+    case "Gobazzinga%20Tokens": {
       console.log(queryString);
       el.innerHTML = `
       <p class="mainText heroText">
@@ -1174,6 +1174,14 @@ async function to_collabpage() {
   
 }
 window.to_collabpage = to_collabpage;
+
+async function to_collectorpage() {
+  
+    window.location.href="./collector.html";
+  
+  
+}
+window.to_collectorpage = to_collectorpage;
 
 async function to_resultpage() {
   var admin = isAdmin();
