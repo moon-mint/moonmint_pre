@@ -57,7 +57,7 @@ async function load_creator() {
   var creator_access = isAdmin(walletID);
   var walletName = walletID.slice(0,12).concat(".....").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("dropdownMenuButton1").textContent = walletName;
-  
+  document.getElementById("root9").textContent = walletName;
 
   var el = `
   <div class="shadowContainer">
@@ -375,10 +375,20 @@ async function load_wallet() {
 }
 window.load_wallet = load_wallet;
 
+async function load_feed() {
+  var walletID = localStorage.getItem("wallet_address");
+  var walletName = walletID.slice(0,12).concat(".....").concat(walletID.slice(walletID.length - 3, walletID.length));
+  document.getElementById("dropdownMenuButton1").textContent = walletName;
+  document.getElementById("you").textContent = walletName;
+  
+}
+window.load_feed = load_feed;
+
 async function load_entry() {
   var walletID = localStorage.getItem("wallet_address");
   var walletName = walletID.slice(0,12).concat(".....").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("dropdownMenuButton1").textContent = walletName;
+  document.getElementById("root9").textContent = walletName;
   var creator_access = isAdmin(walletID);
   if (creator_access.length == 0){
     window.location.href = "./creator.html";
@@ -523,7 +533,7 @@ async function load_explore() {
                         <div class="exploreCard">
                           <img
                             class="exploreCardImg"
-                            src="./img/explore-card-img-1.png"
+                            src="./img/azpp.png"
                             alt=""
                           />
                           <div class="exploreCardFooter">
@@ -572,7 +582,7 @@ async function load_explore() {
                         <div class="exploreCard">
                           <img
                             class="exploreCardImg"
-                            src="./img/explore-card-img-1.png"
+                            src="./img/azpp.png"
                             alt=""
                           />
                           <div class="exploreCardFooter">
