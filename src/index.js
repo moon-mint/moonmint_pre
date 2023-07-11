@@ -375,11 +375,38 @@ async function load_wallet() {
 }
 window.load_wallet = load_wallet;
 
+async function load_wl() {
+  var el = document.getElementById("root2");
+  el.innerHTML = `<br/><br/><a style="font-size:1.5em;">No Past Whitelist Events</a>`;
+}
+window.load_wl = load_wl;
+
+async function load_ga() {
+  var el = document.getElementById("root2");
+  el.innerHTML = `<br/><br/><a style="font-size:1.5em;">No Past Giveaway Events</a>`;
+}
+window.load_ga = load_ga;
+
 async function load_feed() {
   var walletID = localStorage.getItem("wallet_address");
   var walletName = walletID.slice(0,12).concat(".....").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("dropdownMenuButton1").textContent = walletName;
   document.getElementById("you").textContent = walletName;
+  var el = document.getElementById("feed_live");
+  var p = getProjectsZ();
+  console.log(p[0][6]);
+  console.log(": ".concat(walletName.concat(" applied for the Giveaway of ").concat(p[0][0])));
+  var i = 0;
+  while (i < p.length){
+    var add = p[i][6].concat(": ");
+    var add2 = walletName.concat(" applied for the Giveaway of ").concat(p[i][0]);
+    var add_ = `<br/>`.concat(add);
+    var add2_ = `<br/>`.concat(add2).concat(`<br/>`);
+    el.innerHTML = el.innerHTML.concat(add_);
+    el.innerHTML = el.innerHTML.concat(add2_)
+    i += 1;
+  } 
+  
   
 }
 window.load_feed = load_feed;
@@ -798,6 +825,17 @@ function getProjects() {
   plist.push(["ALEPH Flower", "Not Registered", "Oct 3, 2023", "  77", "30", "https://google.com"]);
   plist.push(["DOT Bulls", "Not Registered", "Sept 3, 2023", "  1", "25", "https://google.com"]);
   plist.push(["Phantasm", "Not Registered", "Oct 7, 2023", "  10", "3", "https://google.com"]);
+  return plist;
+}
+
+function getProjectsZ() {
+  var plist = [];
+  plist.push(["Aleph Dudes", "Not Registered", "Sept 14, 2023", "50", "2", "https://google.com", "5:07 pm Mar 20, 2023"]);
+  plist.push(["Bored Alephapes", "Not Registered", "Sept 30, 2023", "  10", "10", "https://google.com", "5:00 pm Mar 18, 2023"]);
+  plist.push(["Aleph Arts", "Not Registered", "Aug 31, 2023", "  2", "6.9", "https://google.com", "2:31 am Feb 26, 2023"]);
+  plist.push(["ALEPH GF", "Not Registered", "Oct 3, 2023", "  77", "30", "https://google.com", "10:08 pm Feb 10, 2023"]);
+  plist.push(["Aleph Bulls", "Not Registered", "Sept 3, 2023", "  1", "25", "https://google.com", "5:01 pm Jan 31, 2023"]);
+  plist.push(["Kusamart", "Not Registered", "Oct 7, 2023", "  10", "3", "https://google.com", "6:00 pm Jan 20, 2023"]);
   return plist;
 }
 
@@ -1445,7 +1483,7 @@ window.to_whitelist = to_whitelist;
 async function to_rafflelist() {
   var url = window.location.toString();
   var queryString = url.substring(url.indexOf('?') + 1);
-  window.location.href = "./raffle.html?".concat(queryString);
+  window.location.href = "./giveaway.html?".concat(queryString);
 }
 window.to_rafflelist = to_rafflelist;
 

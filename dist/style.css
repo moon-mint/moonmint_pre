@@ -535,7 +535,7 @@ body {
   top: 36%;
 }
 .back3 {
-  background-color: rgb(185, 18, 185);
+  background-color: #b37ce6;
   color: cornsilk;
   position: absolute;
   cursor: pointer;
@@ -574,7 +574,7 @@ body {
   top: 36%;
 }
 .back6 {
-  background-color: rgb(185, 18, 185);
+  background-color: #b37ce6;
   color: cornsilk;
   display: inline-block;
   cursor: pointer;
@@ -584,10 +584,10 @@ body {
   font-weight: 600;
   font-size: 1.2em;
   width:8%;
-  top: 36%;
+  top: 46%;
 }
 .back7 {
-  background-color: rgb(185, 18, 185);
+  background-color: #b37ce6;
   color: cornsilk;
   display: inline-block;
   cursor: pointer;
