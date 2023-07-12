@@ -480,8 +480,10 @@ async function load_cal() {
                             <div class="userTd">
                               <img
                                 class="projectUserImg"
-                                src="./img/project-user-img-3.svg"
+                                src="`.concat(proj[i][6]).concat(`"
                                 alt=""
+                                width=60
+                                height=60
                               />
                               <div>
                                 <div class="projectUserName">`.concat(proj[i][0]).concat(`</div>
@@ -496,7 +498,7 @@ async function load_cal() {
                           <td>
                             <a class="projectTableLink" href="#">REGISTER</a>
                           </td>
-    `)));
+    `))));
     root.appendChild(el);
     i += 1;
   }
@@ -510,8 +512,10 @@ async function load_cal() {
                             <div class="userTd">
                               <img
                                 class="projectUserImg"
-                                src="./img/project-user-img-3.svg"
+                                src="`.concat(proj[i][6]).concat(`"
                                 alt=""
+                                width=60
+                                height=60
                               />
                               <div>
                                 <div class="projectUserName">`.concat(proj[i][0]).concat(`</div>
@@ -524,7 +528,7 @@ async function load_cal() {
                           <td>`.concat(proj[i][2]).concat(`</td>
                           <td style="width:1%;text-align:center">`.concat(proj[i][3]).concat(`</td>
                           
-    `)));
+    `))));
     root.appendChild(el);
     i += 1;
   }
@@ -560,8 +564,10 @@ async function load_explore() {
                         <div class="exploreCard">
                           <img
                             class="exploreCardImg"
-                            src="./img/azpp.png"
+                            src="`.concat(proj[i][6]).concat(`"
                             alt=""
+                            width=150
+                            height=150
                           />
                           <div class="exploreCardFooter">
                             <div class="exploreCardText">`
@@ -573,7 +579,7 @@ async function load_explore() {
                           <a id="icpvg" class="exploreCardBtn" href="community_page.html?`.concat(proj[i][0]).concat(`">Coming Soon</a>
                         </div>
                       </div>
-    `));
+    `)));
     
     elr.appendChild(el);
     i += 1;
@@ -609,8 +615,10 @@ async function load_explore() {
                         <div class="exploreCard">
                           <img
                             class="exploreCardImg"
-                            src="./img/azpp.png"
+                            src="`.concat(proj[i][6]).concat(`"
                             alt=""
+                            width=150
+                            height=150
                           />
                           <div class="exploreCardFooter">
                             <div class="exploreCardText">`
@@ -622,7 +630,7 @@ async function load_explore() {
                           <a id="icpvg" class="exploreCardBtn" href="password.html">Coming Soon</a>
                         </div>
                       </div>
-    `);
+    `));
     
     elr.appendChild(el);
     i += 1;
@@ -660,8 +668,10 @@ async function load_act() {
                         <div class="userTd">
                           <img
                             class="projectUserImg"
-                            src="./img/project-user-img-2.svg"
+                            src="`.concat(proj[i][6]).concat(`"
                             alt=""
+                            width=50
+                            height=50
                           />
                           <div>
                             <div class="projectUserName">`.concat(proj[i][0]).concat(`</div>
@@ -696,7 +706,7 @@ async function load_act() {
                       <td>
                         <a class="projectTableLink" href="#">OFFICIAL LINK</a>
                       </td>
-    `))));
+    `)))));
     root.appendChild(el);
     i += 1;
   }
@@ -719,11 +729,49 @@ async function load_list() {
                               <div class="userTd">
                                 <img
                                   class="projectUserImg"
-                                  src="./img/project-user-img-2.svg"
+                                  src=`.concat(proj[i][6]).concat(`
                                   alt=""
+                                  width=50
+                                  height=50
                                 />
                                 <div>
                                   <a class="projectUserName" href="community_page.html?`.concat(proj[i][0]).concat(`">`.concat(proj[i][0]).concat(`</a>
+                                  <div class="projectUserDetails">
+                                    Registered: Yesterday
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              Registered
+                              <img
+                                class="projectUserIcon"
+                                src="./img/project-table-icon-1.svg"
+                                alt=""
+                              />
+                            </td>
+                            <td style="width:28%;text-align:center;">`.concat(proj[i][2]).concat(`</td>
+    `))));
+    root.appendChild(el);
+    i += 1;
+  }
+
+  root = document.getElementById("root2");
+  i = 0;
+  while (i < proj.length){
+    var el = document.createElement('tr');
+    el.innerHTML = `
+    <td>
+                              <div class="userTd">
+                                <img
+                                  class="projectUserImg"
+                                  src="`.concat(proj[i][6]).concat(`"
+                                  alt=""
+                                  width=50
+                                  height=50
+                                />
+                                <div>
+                                  <a class="projectUserName" href="community_page.html?swizz_bears">`.concat(proj[i][0]).concat(`</a>
                                   <div class="projectUserDetails">
                                     Registered: Yesterday
                                   </div>
@@ -744,40 +792,6 @@ async function load_list() {
     i += 1;
   }
 
-  root = document.getElementById("root2");
-  i = 0;
-  while (i < proj.length){
-    var el = document.createElement('tr');
-    el.innerHTML = `
-    <td>
-                              <div class="userTd">
-                                <img
-                                  class="projectUserImg"
-                                  src="./img/project-user-img-2.svg"
-                                  alt=""
-                                />
-                                <div>
-                                  <a class="projectUserName" href="community_page.html?swizz_bears">`.concat(proj[i][0]).concat(`</a>
-                                  <div class="projectUserDetails">
-                                    Registered: Yesterday
-                                  </div>
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              Registered
-                              <img
-                                class="projectUserIcon"
-                                src="./img/project-table-icon-1.svg"
-                                alt=""
-                              />
-                            </td>
-                            <td style="width:28%;text-align:center;">`.concat(proj[i][2]).concat(`</td>
-    `));
-    root.appendChild(el);
-    i += 1;
-  }
-
   root = document.getElementById("root3");
   i = 0;
   while (i < proj.length){
@@ -787,8 +801,10 @@ async function load_list() {
                               <div class="userTd">
                                 <img
                                   class="projectUserImg"
-                                  src="./img/project-user-img-2.svg"
+                                  src="`.concat(proj[i][6]).concat(`"
                                   alt=""
+                                  width=50
+                                  height=50
                                 />
                                 <div>
                                   <a class="projectUserName" href="community_page.html?swizz_bears">`.concat(proj[i][0]).concat(`</a>
@@ -807,7 +823,7 @@ async function load_list() {
                               />
                             </td>
                             <td style="width:28%;text-align:center;">`.concat(proj[i][2]).concat(`</td>
-    `));
+    `)));
     root.appendChild(el);
     i += 1;
   }
@@ -819,12 +835,12 @@ window.load_list = load_list;
 
 function getProjects() {
   var plist = [];
-  plist.push(["Gobazzinga Tokens", "Not Registered", "Sept 14, 2023", "50", "2", "https://google.com"]);
-  plist.push(["Nodle Rafts v2.0", "Not Registered", "Sept 30, 2023", "  10", "10", "https://google.com"]);
-  plist.push(["Hentai Arts", "Not Registered", "Aug 31, 2023", "  2", "6.9", "https://google.com"]);
-  plist.push(["ALEPH Flower", "Not Registered", "Oct 3, 2023", "  77", "30", "https://google.com"]);
-  plist.push(["DOT Bulls", "Not Registered", "Sept 3, 2023", "  1", "25", "https://google.com"]);
-  plist.push(["Phantasm", "Not Registered", "Oct 7, 2023", "  10", "3", "https://google.com"]);
+  plist.push(["Gobazzinga Tokens", "Not Registered", "Sept 14, 2023", "50", "2", "https://google.com", "img/dw7.png"]);
+  plist.push(["Nodle Rafts v2.0", "Not Registered", "Sept 30, 2023", "  10", "10", "https://google.com", "img/table-icon-1.png"]);
+  plist.push(["Hentai Arts", "Not Registered", "Aug 31, 2023", "  2", "6.9", "https://google.com", "img/card-img-2.png"]);
+  plist.push(["ALEPH Flower", "Not Registered", "Oct 3, 2023", "  77", "30", "https://google.com", "img/btcflower.png"]);
+  plist.push(["DOT Bears", "Not Registered", "Sept 3, 2023", "  1", "25", "https://google.com", "img/explore-card-img-2.png"]);
+  plist.push(["Phantasm", "Not Registered", "Oct 7, 2023", "  10", "3", "https://google.com", "img/table-icon-5.png"]);
   return plist;
 }
 
@@ -1026,6 +1042,7 @@ async function load_comm() {
       document.getElementById("disco").textContent = link2[link2.length - 1];
       document.getElementById("root2").textContent = proj[0][2];
       document.getElementById("root4").textContent = proj[1][2];
+      document.getElementById("pp1").src = "./img/dw7.png";
       break;
     }
     case "btcflower": {
