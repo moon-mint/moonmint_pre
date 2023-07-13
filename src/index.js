@@ -229,12 +229,20 @@ async function load_leaderboard() {
   console.log("hui");
   
   var youFlag = false;
-  var pts = getPoints().sort(sorter).reverse();
+  var pts = [];
+  if (localStorage.getItem("ptkzm") == "7"){
+    pts = getPointsZ().sort(sorter).reverse();
+  }
+  else {
+    pts = getPoints().sort(sorter).reverse();
+  }
+  
   var i = 0;
   var root = document.getElementById("point_body");
 
   while (i < pts.length && i < 10){
     var el = document.createElement("tr");
+   
     var rank;
     if (i == 0){
       rank = 1;
@@ -249,7 +257,7 @@ async function load_leaderboard() {
     } 
   el.innerHTML = `
     <td >
-                        <div style="margin-left: 4%;">
+                        <div style="margin-left: 13%;">
                           `.concat(pts[i][0]).concat(`
                         </div>
                       </td>
@@ -337,29 +345,31 @@ async function load_earn() {
   document.getElementById("dropdownMenuButton1").textContent = walletName;
   document.getElementById("you").textContent = walletName;
   var wallet = localStorage.getItem("wallet_nat");
-  if (wallet == "Stoic"){
-    document.getElementById("stoic_top").textContent = "Completed";
-    document.getElementById("stoic_all").textContent = "Completed";
-    document.getElementById("plug_top").textContent = "You Are Using Stoic";
-    document.getElementById("plug_all").textContent = "You Are Using Stoic";
-    document.getElementById("bitf_top").textContent = "You Are Using Stoic";
-    document.getElementById("bitf_all").textContent = "You Are Using Stoic";
+  console.log(wallet);
+  if (wallet == "subwallet"){
+    document.getElementById("sub_top").textContent = "Completed";
+    document.getElementById("sub_all").textContent = "Completed";
+    document.getElementById("pjs_top").textContent = "You Are Using Subwallet";
+    document.getElementById("pjs_all").textContent = "You Are Using Subwallet";
+    document.getElementById("tal_top").textContent = "You Are Using Subwallet";
+    document.getElementById("tal_all").textContent = "You Are Using Subwallet";
   }
-  else if (wallet == "Plug"){
-    document.getElementById("plug_top").textContent = "Completed";
-    document.getElementById("plug_all").textContent = "Completed";
-    document.getElementById("stoic_top").textContent = "You Are Using Plug";
-    document.getElementById("stoic_all").textContent = "You Are Using Plug";
-    document.getElementById("bitf_top").textContent = "You Are Using Plug";
-    document.getElementById("bitf_all").textContent = "You Are Using Plug";
+  else if (wallet == "polkadot-js"){
+    
+    document.getElementById("pjs_top").textContent = "Completed";
+    document.getElementById("pjs_all").textContent = "Completed";
+    document.getElementById("sub_top").textContent = "You Are Using Polkadot.js";
+    document.getElementById("sub_all").textContent = "You Are Using Polkadot.js";
+    document.getElementById("tal_top").textContent = "You Are Using Polkadot.js";
+    document.getElementById("tal_all").textContent = "You Are Using Polkadot.js";
   }
-  else if (wallet == "Bitfinity"){
-    document.getElementById("bitf_top").textContent = "Completed";
-    document.getElementById("bitf_all").textContent = "Completed";
-    document.getElementById("plug_top").textContent = "You Are Using Bitfinity";
-    document.getElementById("plug_all").textContent = "You Are Using Bitfinity";
-    document.getElementById("stoic_top").textContent = "You Are Using Bitfinity";
-    document.getElementById("stoic_all").textContent = "You Are Using Bitfinity";
+  else if (wallet == "talisman"){
+    document.getElementById("tal_top").textContent = "Completed";
+    document.getElementById("tal_all").textContent = "Completed";
+    document.getElementById("pjs_top").textContent = "You Are Using Talisman";
+    document.getElementById("pjs_all").textContent = "You Are Using Talisman";
+    document.getElementById("sub_top").textContent = "You Are Using Talisman";
+    document.getElementById("sub_all").textContent = "You Are Using Talisman";
   }
   else {}
   
@@ -835,7 +845,7 @@ window.load_list = load_list;
 
 function getProjects() {
   var plist = [];
-  plist.push(["Gobazzinga Tokens", "Not Registered", "Sept 14, 2023", "50", "2", "https://google.com", "img/dw7.png"]);
+  plist.push(["Alephkazam1", "Not Registered", "Sept 14, 2023", "50", "2", "https://google.com", "img/azpp.png"]);
   plist.push(["Nodle Rafts v2.0", "Not Registered", "Sept 30, 2023", "  10", "10", "https://google.com", "img/table-icon-1.png"]);
   plist.push(["Hentai Arts", "Not Registered", "Aug 31, 2023", "  2", "6.9", "https://google.com", "img/card-img-2.png"]);
   plist.push(["ALEPH Flower", "Not Registered", "Oct 3, 2023", "  77", "30", "https://google.com", "img/btcflower.png"]);
@@ -870,6 +880,24 @@ function getPoints() {
   plist.push(["User K", "5"]);
   plist.push(["User L", "18"]);
   plist.push(["You", "2"]);
+  return plist;
+}
+
+function getPointsZ() {
+  var plist = [];
+  plist.push(["User A", "3"]);
+  plist.push(["User B", "23"]);
+  plist.push(["User C", "1"]);
+  plist.push(["User D", "13"]);
+  plist.push(["User E", "25"]);
+  plist.push(["User F", "16"]);
+  plist.push(["User G", "7"]);
+  plist.push(["User H", "43"]);
+  plist.push(["User I", "13"]);
+  plist.push(["User J", "13"]);
+  plist.push(["User K", "5"]);
+  plist.push(["User L", "18"]);
+  plist.push(["You", "7"]);
   return plist;
 }
 
@@ -917,6 +945,7 @@ async function flush() {
   localStorage.setItem("re_aleph", "");
   localStorage.setItem("winners_aleph", "");
   localStorage.setItem("contest_aleph", "0");
+  localStorage.setItem("ptkzm", "2");
   
   console.log(0);
 }
@@ -945,6 +974,7 @@ async function add_whitelist() {
     document.getElementById('awl').removeAttribute("onclick");
     document.getElementById('awl').style.cursor = "default";
     document.getElementById('awl').style.color = "black";
+    localStorage.setItem("ptkzm", "7");
     
     console.log(whitelists);
     
@@ -962,43 +992,37 @@ async function load_comm() {
   el2.className = "col-lg-5";
   var proj = getProjects();
   switch (queryString){
-    case "Gobazzinga%20Tokens": {
+    case "Alephkazam1": {
       console.log(queryString);
       el.innerHTML = `
       <p class="mainText heroText">
-              <span>Gobazzinga</span> is an NFT Marketplace with extensive creator
-              tools, gamification with built-in rewards and a P2E (Play to Earn)
-              platform. What is the goal? Our goal is to create a pleasant NFT
-              experience for all web 3 users. We do this by creating an
-              extremely easy onboarding process and an intuitive UX/UI
-              experience for new NFT collectors. We also incentivize collectors
-              using our extensive gamified features. For serious collectors, we
-              have some of the best NFT analytics tools suite embedded within
-              our platform.
+              <span>Alephkazam</span> is an upcoming Outreach and Promotion platform on Aleph Zero. 
+              It aims to help NFT Artists, Metaverses, Meme Token Creators, and other creators on the
+              AZERO ecosystem connect with their audience, and gain more of it, using an intrinsic reward and 
+              utility mechanism, centered around a points system: Pointskazam!
             </p>
             <div class="nft">
-              <span class="bold">The NFT</span>
-              <p class="mainText">The ICPVerse Genesis NFT grants you:</p>
+              <span class="bold">The Giveaway</span>
+              <p class="mainText">The Alephkazam1 Giveaway Includes:</p>
               <ul>
-                <li class="mainText">Limited edition Genesis digital wearables</li>
-                <li class="mainText">First access to 10 new launches on GOODMINT</li>
-                <li class="mainText">DAO based 1/10000 of vote to ICPVerse governance</li>
+                <li class="mainText">5 $AZERO tokens to each winner</li>
+                <li class="mainText">20 $USDC to one winner</li>
+                <li class="mainText">1 WL Slot to each winner for upcoming NFT Collection</li>
               </ul>
             </div>
             <div class="drop">
               <span class="bold">The Drop</span>
               <ul>
                 <li class="mainText">
-                  Signup for GOODMINT any time from now until 12:10 p.m. EST Jan
-                  30.
+                  Signup for Alephkazam1 any time from now until 12:10 p.m. EST on the Registry End Date.
                 </li>
-                <li class="mainText">Early access mint begins 11 p.m. EST Jan 25.</li>
+                
               </ul>
             </div>
             <p class="bold boldText">
-              Learn more about ICPVerse at icpverse.app For all the latest news
-              and announcements, follow ICPVerse on Twitter @icpverse and join
-              discord at discord.gg/icpverse
+              Learn more about Alephkazam at alephkazam.app For all the latest news
+              and announcements, follow Alephkazam on Twitter @alephkazam and join
+              discord at discord.gg/alephkazam
             </p>
       `;
       el2.innerHTML = `
@@ -1033,16 +1057,16 @@ async function load_comm() {
     
       `;
       head.appendChild(el3);
-      document.getElementById("root1").textContent = "Gobazzinga";
-      document.getElementById("tw1").href = "https://www.twitter.com/icpverse";
+      document.getElementById("root1").textContent = proj[0][0];
+      document.getElementById("tw1").href = "https://www.twitter.com/alephkazam";
       var link = document.getElementById("tw1").href.split("/");
       document.getElementById("tw1").textContent = "@".concat(link[link.length - 1]);
-      document.getElementById("disco").href = "https://www.discord.gg/icpverse";
+      document.getElementById("disco").href = "https://www.discord.gg/alephkazam";
       var link2 = document.getElementById("disco").href.split("//www.");
       document.getElementById("disco").textContent = link2[link2.length - 1];
       document.getElementById("root2").textContent = proj[0][2];
-      document.getElementById("root4").textContent = proj[1][2];
-      document.getElementById("pp1").src = "./img/dw7.png";
+      document.getElementById("root7").textContent = proj[0][4];
+      document.getElementById("pp1").src = proj[0][6];
       break;
     }
     case "btcflower": {
