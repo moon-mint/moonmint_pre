@@ -304,7 +304,7 @@ async function load_leaderboard() {
       el = document.createElement('tr');
       el.innerHTML = `
     <td >
-                        <div style="margin-left: 4%;">
+                        <div style="margin-left: 13%;">
                           `.concat(pts[i][0]).concat(`
                         </div>
                       </td>
