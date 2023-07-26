@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Resultskazam</title>
+    <title>Entrieskazam</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -15,63 +15,161 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./dashboard.css" />
     <script defer="defer" src="./main.js"></script>
-   
-    <style>
-      a {text-decoration: none}
-  </style>
   </head>
-  <body class="icpPage" onload="load_result();">
-    <div id="backlink" class="back" onclick="to_creatorpage()">Back</div>
-    <div class="bodyWrapper">
-      <header class="icpHeader">
-        <img id="cp1" src="./img/azfatter.png"  alt="" style="width: 100%; height: 300px; object-fit:fill;" />
-      </header>
-      <div class="container">
-        <img id="pp1" src="./img/azpp.png" alt="" class="icpProfile" style="width: 10%; height: 100px; object-fit:fill;border: .11em solid cyan;" />
-        <h1 class="mainHeading mt-lg-3">Past Event Results</h1>
-        <br/>
-        <br/>
-        <a>
-          <select name="typo" id="pro_name" style="width: 55%;font-size: 1.1em;">
-            <option value="current">Select A Past Event</option>
+
+  <body onload="load_entry();">
+    <!-- Body Wrapper -->
+    <div class="bodyWrapper dashboard-2">
+      <!-- SideMenu -->
+      <div id="menuBar" class="sideMenu">
+        <a id="menuBtn" href="#"><i class="fa-solid fa-bars-staggered"></i></a>
+        <div class="brandHead">
+          <a href="#">
+            <img src="./img/az2.png" alt="" style="width: 182px; height: 30px; object-fit:cover;" />
+          </a>
+        </div>
+        <div class="menuWrapper">
+          <div class="menuTabs">
+            <a class="menuTab" href="./collector.html">Collector</a>
+            <a class="menuTab active" onclick="to_creatorpage();" style="cursor: pointer;">Creator</a>
+          </div>
+          <a>
+          <select name="typo" id="pro_name" style="width: 70%;font-size: 1.1em;">
+            <option value="current">Select Project</option>
             
           </select>
-          <button style="background-color: rgb(23, 6, 39);color: rgb(159, 250, 250);width: 6%;font-size: 1.1em;font-weight: 600;border-radius: 5%;" onclick="switch_event();">Select</button>
+          <button style="color: rgb(216, 190, 216);background-color: #00032b;width: 25%;font-size: 1.2em;font-weight: 400;border-radius: 15%;" onclick="switch_project();">Enter</button>
           <br/>
           <br/>
         </a>
-       
-        <div class="row">
-          <div class="col-lg-7">
-            
-            <div id="root4" class="heroText8">
-              <br/>
-              
-              
+          <div class="logoTag">
+            <img class="roundImg" src="./img/azpp.png" alt="" />
+            <div>
+              <div id="root9" class="taglogoText"></div>
+              <a class="tagLogoLink" onclick="to_commpage();" style="cursor:pointer;"
+                >Public page <img src="./img/link-icon.svg" alt=""
+              /></a>
             </div>
-            </div>
-            </div>
-            </div>
-            
-        
-      </div>
-      <footer class="icpPageFooter">
-        <div class="container">
-            <div class="row">
-                <div class="col-6">
-                    <span>Powered by</span>
-                    <img src="./img/az2.png" alt="" style="width: 182px; height: 30px; object-fit:cover;">
-                </div>
-                <div class="col-6 text-end">
-                    <a href="#"><img src="./img/upArrow.svg" alt=""></a>
-                </div>
-            </div>
+          </div>
+          <div class="sideMenuLinks">
+            <a class="sideMenuLink" onclick="to_creatorpage();" style="cursor: pointer;"
+              ><span><img src="./img/dashboard-icon.svg" alt="" /></span
+              >Dashboard</a
+            >
+            <a class="sideMenuLink" onclick="to_entrypage();" style="cursor: pointer;"
+              ><span><img src="./img/entry-list-icon.svg" alt="" /></span>Entry
+              List</a
+            >
+            <a class="sideMenuLink" onclick="to_collabpage();" style="cursor: pointer;"
+              ><span><img src="./img/collabs-icon.svg" alt="" /></span>Collab
+              <span class="blueClr"> (NEW)</span>
+            </a>
+            <a class="sideMenuLink active" onclick="to_resultpage();" style="cursor: pointer;"
+              ><span><img src="./img/raffle-icon.svg" alt="" /></span>Results
+            </a>
+            <a class="sideMenuLink" 
+            ><span><img src="./img/settings-icon.svg" alt="" /></span>Insights
+            <span class="blueClr">(coming soon)</span>
+          </a>
+            <a class="sideMenuLink" 
+              ><span><img src="./img/tools-icon.svg" alt="" /></span>Tools
+              <span class="blueClr">(coming soon)</span>
+            </a>
+            <div class="supportText" onclick="expand_support();" style="cursor: pointer;">SUPPORT </div>
+            <a target="_blank" id="s1" class="sideMenuLink" style="display:none;" href="https://docs.google.com/document/d/1zZUyVKMWyiLvKlmNJHgcpiWbKopZhMaGSgOanCKsAb8/edit?usp=sharing"
+              ><span><img src="./img/documentation-cion.svg" alt="" /></span
+              >Documentation
+            </a>
+            <a target="_blank" id="s2" class="sideMenuLink" href="https://discord.com/invite/YGJDGkRppV" style="display:none;"
+              ><span><img src="./img/discord-icon.svg" alt="" /></span>Join
+              Discord
+            </a>
+            <a target="_blank" id="s3" class="sideMenuLink" href="https://twitter.com/icpverse?lang=en" style="display:none;"
+              ><span><img src="./img/twitter-icon.svg" alt="" /></span>Twitter
+            </a>
+          </div>
         </div>
-      </footer>
-    </div>
+      </div>
 
+      <!-- Body Contents -->
+      <div class="bodyContents">
+        <div class="dashboardHeader">
+          <h1 class="dashboardHeading">Check Out the Results of Your Previously Organized Events</h1>
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img class="me-1" src="./img/white-wallet-icon.svg" alt="" />
+              mfp0...2gmj
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item">Cancel</a></li>
+              <li><a class="dropdown-item" href="./index.html">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="contentsWrapper">
+          <div class="multiButtons">
+            <a class="mainBtn" href="#" style="display:none;"
+              ><img style="height: 13px" src="./img/btn-icon-1.svg" alt="" />
+              Settings</a
+            >
+          
+          </div>
+          <div class="testContainer">
+            <p class="testText" id="op">
+              Welcome to the Alephkazam App Beta version. For more information, say hi on <a style="font-weight: 800;">TWITTER</a>
+            </p>
+          </div>
+          <!-- entry list -->
+          <div class="entryListInfo" id="elistinfo" style="display:none;">
+            <div class="listNav">
+              <a href="#" class="activeList"
+                ><img src="./img/entryList.svg" alt="" />Full List</a
+              >
+              <a href="#"><img src="./img/update.svg" alt="" />Bulk Update</a>
+              <a href="#"><img src="./img/remove.svg" alt="" />Remove Bots</a>
+            </div>
+            <div class="entryWallet">
+              <a href="#"><img src="./img/add.svg" alt="" />Add Wallets</a>
+              <a href="#"><img src="./img/win.svg" alt="" />Pick Winners</a>
+            </div>
+          </div>
+          <!-- search area -->
+          
+          <br/>
+          <div style="width: 65%;font-size: 1.5em;margin-bottom: .2em;font-weight: 600;font-family: monospace;">Choose an Event</div>
+          <a>
+            <select name="typo" id="pro_name" style="width: 65%;font-size: 1.1em;">
+              <option value="current">Select A Past Event</option>
+              
+            </select>
+            <button style="background-color: #00032b;color: rgb(216, 190, 216);width: 6%;font-size: 1.1em;font-weight: 600;border-radius: 14%;" onclick="switch_event();">Select</button>
+            <br/>
+            <br/>
+          </a>
+          <div class="row">
+            <div class="col-lg-7">
+              
+              <div id="root4" class="heroText8">
+                <br/>
+                
+                
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./dashboard.js"></script>
   </body>
 </html>

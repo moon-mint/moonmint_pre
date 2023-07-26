@@ -16,7 +16,7 @@ body {
 
 .loginButton3 {
   display: inline;
-  background-color: #9a45eb;
+  background-color: #00032b;
   color: cornsilk;
   width: 50%;
   max-width: 50%;
@@ -250,14 +250,15 @@ body {
   transform: translateY(-3px);
 }
 .bodyWrapper .mainBtn.red {
-  background-color: #9a45eb;
+  background-color: #d6aff0;
+  color: white;
   margin-left: 0.4em;
 }
 .bodyContents .multiButtons {
   text-align: right;
 }
 .bodyContents .testContainer {
-  background-color: rgb(27, 6, 102);
+  background-color: #00032b;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   padding: 1em;

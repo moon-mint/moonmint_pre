@@ -1192,8 +1192,11 @@ window.load_broadcast = load_broadcast;
 async function load_collab() {
   var url = window.location.toString();
   var queryString = url.substring(url.indexOf('?') + 1);
-  var wallet = localStorage.getItem("wallet_address");
-  var creator_access = isAdmin(wallet);
+  var walletID = localStorage.getItem("wallet_address");
+  var walletName = walletID.slice(0,12).concat(".....").concat(walletID.slice(walletID.length - 3, walletID.length));
+  document.getElementById("dropdownMenuButton1").textContent = walletName;
+  document.getElementById("root9").textContent = walletName;
+  var creator_access = isAdmin(walletName);
   if (creator_access.length == 0){
     window.location.href = "./creator.html";
   }  
@@ -1202,6 +1205,24 @@ async function load_collab() {
    
   }
 window.load_collab = load_collab;
+
+
+async function load_result() {
+  var url = window.location.toString();
+  var queryString = url.substring(url.indexOf('?') + 1);
+  var walletID = localStorage.getItem("wallet_address");
+  var walletName = walletID.slice(0,12).concat(".....").concat(walletID.slice(walletID.length - 3, walletID.length));
+  document.getElementById("dropdownMenuButton1").textContent = walletName;
+  document.getElementById("root9").textContent = walletName;
+  var creator_access = isAdmin(walletName);
+  if (creator_access.length == 0){
+    window.location.href = "./creator.html";
+  }  
+    
+    
+   
+  }
+window.load_result = load_result;
 
 
 
@@ -1437,11 +1458,11 @@ window.load_hclub = load_hclub;
 
 async function turn_discovery() {
   var el = document.getElementById("discovery");
-  if (el.textContent != "Turn On Discovery"){
-    el.textContent = "Turn On Discovery";
+  if (el.textContent != "Visibility ON"){
+    el.textContent = "Visibility ON";
   }
   else {
-    el.textContent = "Turn Off Discovery";
+    el.textContent = "Visibility OFF";
   }
   
   
