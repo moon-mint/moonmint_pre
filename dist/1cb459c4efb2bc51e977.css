@@ -8,7 +8,7 @@ html {
 }
 body {
   font-family: "Nunito";
-  background-color: #2f0076;
+  background-color: #00032b;
   font-size: 1em;
 }
 
@@ -106,9 +106,9 @@ body {
   font-weight: 600;
   font-size: 1.2em;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
-  color: navy;
+  color: whitesmoke;
   letter-spacing: 2px;
-  background-color: gold;
+  background-color: #ff008c;
   border-radius: 10%;
   text-align: justify;
   padding: 0.7em 3em;
@@ -129,7 +129,7 @@ body {
   
   color: rgb(5, 5, 4);
   transform: translateY(-4px);
-  border-color: #2f0076;
+  border-color: #00032b;
   
   background-color: whitesmoke;
   
@@ -1588,7 +1588,7 @@ color: gold;
 
 /* Landing Page */
 body.home {
-  background-color: #2f0076;
+  background-color: #00032b;
 }
 .homeWrapper {
   text-align: center;
@@ -1601,10 +1601,8 @@ body.home {
   margin-bottom: 1em;
 }
 .homeWrapper .homeText2 {
-  color: #c457f5;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-  -webkit-text-stroke-width: 0.5px;
-  -webkit-text-stroke-color: indigo;
+  color: #fffff0;
+  font-family:Arial, Helvetica, sans-serif;
   font-size:200%;
   font-weight: 600;
   margin-bottom: 1em;
@@ -1656,7 +1654,7 @@ body.home {
   font-family: "Lato";
 }
 body.home .pageHeader.homeHeader {
-  background-color: #2f0076;
+  background-color: #00032b;
   border: none;
   display: block;
   text-align: right;

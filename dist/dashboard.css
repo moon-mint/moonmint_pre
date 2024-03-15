@@ -16,7 +16,7 @@ body {
 
 .loginButton3 {
   display: inline;
-  background-color: #00032b;
+  background-color: #2f0076;
   color: cornsilk;
   width: 50%;
   max-width: 50%;
@@ -49,16 +49,14 @@ body {
   background: rgba(0, 0, 0, 0.1);
 }
 .sideMenu::-webkit-scrollbar-thumb {
-  background: #df0053;
+  background: #c457f5;
 }
-.sideMenu::-webkit-scrollbar-thumb:hover {
-  background: white;
-}
+
 .sideMenu {
   width: 300px;
   height: 100%;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: rgb(243, 227, 227);
+  background-color: #c457f5;
   position: fixed;
   left: 0;
   top: 0;
@@ -68,16 +66,16 @@ body {
 }
 .sideMenu .menuWrapper {
   padding: 0 1.5em;
-  background-color: rgb(243, 227, 227);
+  background-color: #c457f5;
 }
 .sideMenu .supportText {
   font-size: 0.9em;
-  color: #0000008c;
+  color: #2f0076;
   margin: 1.2em 0 0.6em 0.3em;
 }
 .sideMenu .sideMenuLink {
   font-size: 0.9em;
-  color: #0000008c;
+  color: whitesmoke;
   font-weight: 400;
   display: block;
   text-decoration: none;
@@ -90,7 +88,7 @@ body {
   text-align: left;
 }
 .sideMenu .sideMenuLink .blueClr {
-  color: #0016d98c;
+  color: pink;
   font-size: 0.7em;
 }
 .sideMenu .sideMenuLink span {
@@ -102,9 +100,14 @@ body {
   width: 12px;
   transition: 200ms all ease-in-out;
 }
-.sideMenu .sideMenuLink.active,
+.sideMenu .sideMenuLink.active {
+  color: gold;
+  font-size: 1.00em;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color:gold;
+}
 .sideMenu .sideMenuLink:hover {
-  color: #6572ebee;
+  color: gold;
 }
 .sideMenu .sideMenuLink.active img,
 .sideMenu .sideMenuLink:hover img {
@@ -117,30 +120,31 @@ body {
   color: white;
   position: absolute;
   right: -30px;
-  background-color: #00032b;
+  background-color: #2f0076;
   padding: 0.3em 0.5em;
   border-radius: 0 0.3em 0.3em 0;
 }
 .sideMenu .brandHead {
-  background-color: #00032b;
+  background-color: #2f0076;
   padding: 2.0em 0;
   text-align: center;
 }
 .sideMenu .menuTabs .menuTab {
   display: inline-block;
   text-decoration: none;
-  background-color: #d6aff0;
+  background-color: gold;
   font-size: 0.9em;
   width: 100%;
   max-width: 85px;
   padding: 0.4em;
   text-align: center;
-  color: white;
+  color: navy;
   transition: 200ms all ease-in-out;
 }
 .sideMenu .menuTabs .menuTab.active,
 .sideMenu .menuTabs .menuTab:hover {
-  background-color: #00032b;
+  background-color: #2f0076;
+  color: gold;
 }
 .sideMenu .menuTabs {
   display: flex;
@@ -155,7 +159,7 @@ body {
   margin-left: 2.2em;
 }
 .sideMenu .logoTag {
-  background-color: #1e162e;
+  background-color: #2f0076;
   border-radius: 3px;
   display: flex;
   align-items: flex-end;
@@ -258,7 +262,7 @@ body {
   text-align: right;
 }
 .bodyContents .testContainer {
-  background-color: #00032b;
+  background-color: #2f0076;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   padding: 1em;
@@ -816,8 +820,8 @@ body {
     overflow-x: scroll;
   }
   .sideMenu .menuWrapper {
-    background-color: rgb(182, 53, 53);
-    padding: 0 1em;
+    background-color: #c457f5;
+    padding: 0 0em;
   }
   .sideMenu .sideMenuLinks {
     padding: 0 1.5em;
