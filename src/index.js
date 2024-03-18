@@ -6,7 +6,7 @@ var whitelists = {};
 
 async function connect_aleph() {
   try{
-    const allInjected = await web3Enable('Alephkazam Walletconnect');
+    const allInjected = await web3Enable('Moonmint');
 
 	
     const allAccounts = await web3Accounts();  
@@ -46,7 +46,7 @@ window.switch_project = switch_project;
 
 function isAdmin() {
   var adminedProjects = [];
-  adminedProjects.push("alephkazam_day1");
+  adminedProjects.push("moonmint_day1");
   adminedProjects.push("gobazzinga");
   adminedProjects.push("alephflower");
   return adminedProjects;
@@ -845,7 +845,7 @@ window.load_list = load_list;
 
 function getProjects() {
   var plist = [];
-  plist.push(["Alephkazam1", "Not Registered", "Sept 14, 2023", "50", "2", "https://google.com", "img/azpp.png"]);
+  plist.push(["Moonmint1", "Not Registered", "Sept 14, 2023", "50", "2", "https://google.com", "img/Group_152.png"]);
   plist.push(["Nodle Rafts v2.0", "Not Registered", "Sept 30, 2023", "  10", "10", "https://google.com", "img/table-icon-1.png"]);
   plist.push(["Hentai Arts", "Not Registered", "Aug 31, 2023", "  2", "6.9", "https://google.com", "img/card-img-2.png"]);
   plist.push(["ALEPH Flower", "Not Registered", "Oct 3, 2023", "  77", "30", "https://google.com", "img/btcflower.png"]);
@@ -992,18 +992,18 @@ async function load_comm() {
   el2.className = "col-lg-5";
   var proj = getProjects();
   switch (queryString){
-    case "Alephkazam1": {
+    case "Moonmint1": {
       console.log(queryString);
       el.innerHTML = `
       <p class="mainText heroText">
-              <span>Alephkazam</span> is an upcoming Outreach and Promotion platform on Aleph Zero. 
+              <span>Moonmint</span> is an upcoming Outreach and Promotion platform on Aleph Zero. 
               It aims to help NFT Artists, Metaverses, Meme Token Creators, and other creators on the
               AZERO ecosystem connect with their audience, and gain more of it, using an intrinsic reward and 
-              utility mechanism, centered around a points system: Pointskazam!
+              utility mechanism, centered around a points system: Moon Points!
             </p>
             <div class="nft">
               <span class="bold">The Giveaway</span>
-              <p class="mainText">The Alephkazam1 Giveaway Includes:</p>
+              <p class="mainText">The Moonmint1 Giveaway Includes:</p>
               <ul>
                 <li class="mainText">5 $AZERO tokens to each winner</li>
                 <li class="mainText">20 $USDC to one winner</li>
@@ -1014,15 +1014,15 @@ async function load_comm() {
               <span class="bold">The Drop</span>
               <ul>
                 <li class="mainText">
-                  Signup for Alephkazam1 any time from now until 12:10 p.m. EST on the Registry End Date.
+                  Signup for Moonmint1 any time from now until 12:10 p.m. EST on the Registry End Date.
                 </li>
                 
               </ul>
             </div>
             <p class="bold boldText">
-              Learn more about Alephkazam at alephkazam.app For all the latest news
-              and announcements, follow Alephkazam on Twitter @alephkazam and join
-              discord at discord.gg/alephkazam
+              Learn more about Moonmint at moonmint.app For all the latest news
+              and announcements, follow Moonmint on Twitter @moonmint and join
+              discord at discord.gg/moonmint
             </p>
       `;
       el2.innerHTML = `
@@ -1058,10 +1058,10 @@ async function load_comm() {
       `;
       head.appendChild(el3);
       document.getElementById("root1").textContent = proj[0][0];
-      document.getElementById("tw1").href = "https://www.twitter.com/alephkazam";
+      document.getElementById("tw1").href = "https://www.twitter.com/moonmint";
       var link = document.getElementById("tw1").href.split("/");
       document.getElementById("tw1").textContent = "@".concat(link[link.length - 1]);
-      document.getElementById("disco").href = "https://www.discord.gg/alephkazam";
+      document.getElementById("disco").href = "https://www.discord.gg/moonmint";
       var link2 = document.getElementById("disco").href.split("//www.");
       document.getElementById("disco").textContent = link2[link2.length - 1];
       document.getElementById("root2").textContent = proj[0][2];
@@ -1307,7 +1307,7 @@ async function to_resultpage() {
 window.to_resultpage = to_resultpage;
 
 async function to_createpage() {
-  window.location.href="./event_create.html?alephkazam_day1";
+  window.location.href="./event_create.html?moonmint_day1";
 }
 window.to_createpage = to_createpage;
 
@@ -1328,7 +1328,7 @@ async function to_holderpage() {
       await window.ic.plug.requestConnect({
         whitelist,
       });
-      window.location.href="./holder_club.html?alephkazam_day1";
+      window.location.href="./holder_club.html?moonmint_day1";
     } catch (e) {
       console.log(e);
     }
@@ -1344,7 +1344,7 @@ async function to_holderpage() {
     await window.ic.infinityWallet.requestConnect({
       whitelist,
     });
-    window.location.href="./holder_club.html?alephkazam_day1";
+    window.location.href="./holder_club.html?moonmint_day1";
     } catch (e) {
       console.log(e);
     }
@@ -1354,7 +1354,7 @@ async function to_holderpage() {
 window.to_holderpage = to_holderpage;
 
 async function to_clubpage() {
-  window.location.href="./club.html?alephkazam_day1";
+  window.location.href="./club.html?moonmint_day1";
 }
 window.to_clubpage = to_clubpage;
 
@@ -1616,7 +1616,7 @@ async function submit_event() {
     localStorage.setItem("winners_aleph", win);
     localStorage.setItem("contest_aleph", "1");
     
-    window.location.href = "./creator.html?alephkazam_day1";
+    window.location.href = "./creator.html?moonmint_day1";
     
   }
   else {
