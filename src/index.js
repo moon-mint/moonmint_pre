@@ -1,8 +1,29 @@
 import { web3Accounts, web3Enable, web3FromAddress } from '@polkadot/extension-dapp';
+import { MetaMaskSDK } from "@metamask/sdk";
 
 var raffles = {};
 var whitelists = {};
 
+
+async function connect_meta() {
+  if (window.ethereum) {
+    try {
+      const addressArray = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      
+      console.log(addressArray);
+    } catch (err) {
+      return {
+        address: "",
+        status: "😥 " + err.message,
+      };
+    }
+  } else {
+    console.log("connect to metamask failed");
+  }
+}
+window.connect_meta = connect_meta;
 
 async function connect_aleph() {
   try{
