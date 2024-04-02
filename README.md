@@ -1,2 +1,2 @@
-# alephkazam
-The pre production version of the Alephkazam App on Aleph Zero
+# moonmint
+The pre production version of the Moonmint Dapp on the Moonbeam and Moonriver Networks 
