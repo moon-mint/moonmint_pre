@@ -4688,9 +4688,33 @@ async function web3UseRpcProvider(source, key) {
 ;// CONCATENATED MODULE: ./src/index.js
 
 
+
 var raffles = {};
 var whitelists = {};
 
+
+async function connect_meta() {
+  if (window.ethereum) {
+    try {
+      const addressArray = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      
+      console.log(addressArray);
+      localStorage.setItem("wallet_nat", 'metamask');
+      localStorage.setItem("wallet_address", addressArray[0].toString());
+      window.location.href = "./collector.html";
+    } catch (err) {
+      return {
+        address: "",
+        status: "😥 " + err.message,
+      };
+    }
+  } else {
+    console.log("connect to metamask failed");
+  }
+}
+window.connect_meta = connect_meta;
 
 async function connect_aleph() {
   try{
@@ -5414,6 +5438,7 @@ window.load_act = load_act;
 
 async function load_list() {
   var walletID = localStorage.getItem("wallet_address");
+  console.log(walletID);
   var walletName = walletID.slice(0,12).concat(".....").concat(walletID.slice(walletID.length - 3, walletID.length));
   document.getElementById("dropdownMenuButton1").textContent = walletName;
   document.getElementById("you").textContent = walletName;
@@ -5627,12 +5652,12 @@ async function flush() {
   localStorage.setItem("wallet_nat", "");
   localStorage.setItem("current_captcha", "dhsgfgakg");
   localStorage.setItem("captcha_true", "");
-  localStorage.setItem("nat_aleph", "");
-  localStorage.setItem("ent_aleph", "");
-  localStorage.setItem("rs_aleph", "");
-  localStorage.setItem("re_aleph", "");
-  localStorage.setItem("winners_aleph", "");
-  localStorage.setItem("contest_aleph", "0");
+  localStorage.setItem("nat_moon", "");
+  localStorage.setItem("ent_moon", "");
+  localStorage.setItem("rs_moon", "");
+  localStorage.setItem("re_moon", "");
+  localStorage.setItem("winners_moon", "");
+  localStorage.setItem("contest_moon", "0");
   localStorage.setItem("ptkzm", "2");
   
   console.log(0);
@@ -5684,7 +5709,7 @@ async function load_comm() {
       console.log(queryString);
       el.innerHTML = `
       <p class="mainText heroText">
-              <span>Moonmint</span> is an upcoming Outreach and Promotion platform on Aleph Zero. 
+              <span>Moonmint</span> is an upcoming Outreach and Promotion platform on Moonbeam. 
               It aims to help NFT Artists, Metaverses, Meme Token Creators, and other creators on the
               AZERO ecosystem connect with their audience, and gain more of it, using an intrinsic reward and 
               utility mechanism, centered around a points system: Moon Points!
@@ -6297,12 +6322,12 @@ async function submit_event() {
   
   if (((nat.length != 0 && ent.length != 0))  && ((re.length != 0  && rs.length != 0)  &&  (win.length != 0 ))){
     
-    localStorage.setItem("nat_aleph", nat);
-    localStorage.setItem("ent_aleph", ent);
-    localStorage.setItem("rs_aleph", rs);
-    localStorage.setItem("re_aleph", re);
-    localStorage.setItem("winners_aleph", win);
-    localStorage.setItem("contest_aleph", "1");
+    localStorage.setItem("nat_moon", nat);
+    localStorage.setItem("ent_moon", ent);
+    localStorage.setItem("rs_moon", rs);
+    localStorage.setItem("re_moon", re);
+    localStorage.setItem("winners_moon", win);
+    localStorage.setItem("contest_moon", "1");
     
     window.location.href = "./creator.html?moonmint_day1";
     
