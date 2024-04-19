@@ -254,7 +254,7 @@ async function load_leaderboard() {
   
   var youFlag = false;
   var pts = [];
-  if (localStorage.getItem("ptkzm") == "7"){
+  if (localStorage.getItem("moonpts") == "7"){
     pts = getPointsZ().sort(sorter).reverse();
   }
   else {
@@ -970,7 +970,7 @@ async function flush() {
   localStorage.setItem("re_moon", "");
   localStorage.setItem("winners_moon", "");
   localStorage.setItem("contest_moon", "0");
-  localStorage.setItem("ptkzm", "2");
+  localStorage.setItem("moonpts", "2");
   
   console.log(0);
 }
@@ -999,7 +999,7 @@ async function add_whitelist() {
     document.getElementById('awl').removeAttribute("onclick");
     document.getElementById('awl').style.cursor = "default";
     document.getElementById('awl').style.color = "black";
-    localStorage.setItem("ptkzm", "7");
+    localStorage.setItem("moonpts", "7");
     
     console.log(whitelists);
     
