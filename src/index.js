@@ -56,6 +56,11 @@ async function get_name() {
 }
 window.get_name = get_name;
 
+async function to_about() {
+  window.location.href = './about.html';
+}
+window.to_about = to_about;
+
 async function switch_project() {
   var new_proj = document.getElementById("pro_name").value;
   var url = window.location.toString();
